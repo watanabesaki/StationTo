@@ -23,11 +23,12 @@ class ViewController: UIViewController {
     let LocationUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     var apikey = ""
     
+    
     func getKeys(){
         var keys: NSDictionary
         if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)!
-            apikey = keys["apiKey"] as! String
+            apikey = keys["apikey"] as! String
             print(apikey)
         }
         
@@ -55,18 +56,20 @@ class ViewController: UIViewController {
         view = mapView
         
         // マーカーの作成
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D (latitude: latitude,longitude: longitude)
+        //let marker = GMSMarker()
+        //marker.position = CLLocationCoordinate2D (latitude: latitude,longitude: longitude)
         //marker.title = "Sydney"
         //marker.snippet = "Australia"
-        marker.map = mapView
+        //marker.map = mapView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        //APIkeyの読み込み
         getKeys()
+        //緯度経度の取得
         getLatLngForZip(zipCode: "100-0011")
     }
 
@@ -99,10 +102,17 @@ class ViewController: UIViewController {
         
         print(jsonlatitude)
         print(jsonlongitude)
-        //マーカーの作成
-        let locationmarker = GMSMarker()
-        locationmarker.position = CLLocationCoordinate2D (latitude: jsonlatitude,longitude: jsonlongitude)
         
+        //マーカーの作成
+        let camera = GMSCameraPosition.camera(withLatitude: jsonlatitude,
+                                              longitude:jsonlongitude,
+                                              zoom:15)
+        let mapView = GMSMapView.map(withFrame: .zero, camera:camera)
+        
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: jsonlatitude, longitude: jsonlongitude)
+        marker.map = mapView
+        view = mapView
         }
 }
 
