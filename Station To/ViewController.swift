@@ -19,9 +19,16 @@ class ViewController: UIViewController {
     let latitude: CLLocationDegrees = 35.689407
     let longitude: CLLocationDegrees = 139.700306
     
+    //検索結果の緯度経度
+    var jsonlatitude : Double = 35.689407
+    var jsonlongitude : Double = 139.700306
+    
     //Google Maps Geocoding API リクエストの形式 出力が JSON
     let LocationUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     var apikey = ""
+    
+    //SimpleAPI　最寄り駅検索
+    let StationUrl = "http://map.simpleapi.net/stationapi/?output=json"
     
     
     func getKeys(){
@@ -71,7 +78,17 @@ class ViewController: UIViewController {
         getKeys()
         //緯度経度の取得
         getLatLngForZip(zipCode: "100-0011")
+        //最寄り駅取得
+        getcloserstation()
+        //CSVファイルの読み込み
+        loadCSV(filename: "station20170403free")
+        //stationcode取得
+        stationcode(station_name: "新宿")
+        //CSVファイルの読み込み
+        loadCSV(filename: "line20170403free")
+        
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -94,11 +111,11 @@ class ViewController: UIViewController {
         print(result)
         let geometry = result ["geometry"] as! NSDictionary
         print(geometry)
-        var location = geometry["location"] as! NSDictionary
+        let location = geometry["location"] as! NSDictionary
         print(location)
         
-        var jsonlatitude = (location["lat"] as! Double)
-        var jsonlongitude = (location["lng"] as! Double)
+        jsonlatitude = (location["lat"] as! Double)
+        jsonlongitude = (location["lng"] as! Double)
         
         print(jsonlatitude)
         print(jsonlongitude)
@@ -114,5 +131,78 @@ class ViewController: UIViewController {
         marker.map = mapView
         view = mapView
         }
-}
+    
+    //Simple API　最寄り駅検索
+    func getcloserstation(){
+    
+        //let jsonlatitudeString : String = "\(String(describing: jsonlatitude))"
+        //let jsonlongitudeString : String = "\(String(describing: jsonlongitude))"
+        //print(jsonlatitudeString)
+        //print(jsonlongitudeString)
+        print(jsonlatitude)
+        print(jsonlongitude)
+        print(StationUrl)
+        /*
+        let url = URL(String: "\(StationUrl)&x=\(jsonlatitude)&y=\(jsonlongitude)")
+        print(url)
+        let jsondate = try! Data(contentsOf: url!)
+        let json = try! JSONSerialization.jsonObject(with: jsondate, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+        print(json)
+        */
+    
+    }
+    
+    
+    //CSVファイルの読み込みメソッド。引数にファイル名、返り値にString型の配列。
+    func loadCSV(filename:String)->[String]{
+        //CSVファイルを格納するための配列を作成
+        var csvArray : [String] = []
+        
+        //CSVファイルの読み込み
+        let csvBundle = Bundle.main.path(forResource: filename, ofType: "csv")
+        
+        do {
+            //csvBundleのパスを読み込み、UTF8に文字コード変換して、NSStringに格納
+            let csvData = try String(contentsOfFile: csvBundle!,
+                                     encoding: String.Encoding.utf8)
+            //改行コードが"\r"で行なわれている場合は"\n"に変更する
+            //let lineChange = csvData.replacingOccurrences(of: "\r", with: "\n")
+            //"\n"の改行コードで区切って、配列csvArrayに格納する
+            //csvArray = lineChange.components(separatedBy: "\n")
+            
+            csvArray = csvData.components(separatedBy:"\n")
+            
+        }
+        catch {
+            print("CSVファイル読み込みエラー")
+        }
+        print("CSVファイル読み込み完了")
+        return csvArray
+        
 
+        // ファイル名がquizmondai.scvファイルの場合は以下のように形で呼ぶ
+        // let resultArray:[String] = loadCSV("quizmondai")
+
+    }
+    
+    
+    //駅から路線コード取得、路線一覧取得
+    func stationcode (station_name:String){
+        //駅名から駅コードを取得
+        let resultStation : [String] = loadCSV(filename: "station20170403free")
+        let resultStationRow = resultStation[1]
+        let splitStationRow = resultStationRow.components(separatedBy: ",")
+        print(splitStationRow[5]) //路線コード取得
+        
+        //路線コードから路線を取得
+        let resultLine : [String] = loadCSV(filename: "line20170403free")
+        let resultLineRow = resultLine[1]
+        let splitLineRow = resultLineRow.components(separatedBy: ",")
+        print(splitLineRow[2]) //路線取得
+        
+    }
+    
+    
+    
+
+}
