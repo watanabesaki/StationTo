@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     //SimpleAPI　最寄り駅検索
     let StationUrl = "http://map.simpleapi.net/stationapi/?output=json"
     
-    
+    //apikeyを持ってくる
     func getKeys(){
         var keys: NSDictionary
         if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
@@ -77,7 +77,7 @@ class ViewController: UIViewController {
         //APIkeyの読み込み
         getKeys()
         //緯度経度の取得
-        getLatLngForZip(zipCode: "100-0011")
+        getLatLngForZip(zipCode: "東京都千代田区内幸町１丁目１−６")
         //最寄り駅取得
         getcloserstation()
         //CSVファイルの読み込み
@@ -99,11 +99,16 @@ class ViewController: UIViewController {
 
     //ジオコーディングで住所から緯度軽度を取得
     func getLatLngForZip(zipCode: String) {
-        let url = URL(string: "\(LocationUrl)address=\(zipCode)&key=\(apikey)")
-        let jsondate = try! Data(contentsOf: url!)
+        
+        let rawUrl = "\(LocationUrl)address=\(zipCode)&key=\(apikey)"
+        //URLエンコーディング(日本語→%)
+        let encodedUrl = rawUrl.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+        let url = URL(string: encodedUrl!)
+        
+        let jsondata = try! Data(contentsOf: url!)
         
         //Foundationオブジェクトで表現されたデータをJSONSerializationでJSONオブジェクト(Data)に変換
-        let json = try! JSONSerialization.jsonObject(with: jsondate, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+        let json = try! JSONSerialization.jsonObject(with: jsondata, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
         print(json)
         let resultArray = json ["results"] as! NSArray
         print(resultArray)
@@ -135,15 +140,16 @@ class ViewController: UIViewController {
     //Simple API　最寄り駅検索
     func getcloserstation(){
     
-        //let jsonlatitudeString : String = "\(String(describing: jsonlatitude))"
-        //let jsonlongitudeString : String = "\(String(describing: jsonlongitude))"
-        //print(jsonlatitudeString)
-        //print(jsonlongitudeString)
+        let jsonlatitudeString : String = "\(String(describing: jsonlatitude))"
+        let jsonlongitudeString : String = "\(String(describing: jsonlongitude))"
+        print(jsonlatitudeString)
+        print(jsonlongitudeString)
         print(jsonlatitude)
         print(jsonlongitude)
         print(StationUrl)
+        
         /*
-        let url = URL(String: "\(StationUrl)&x=\(jsonlatitude)&y=\(jsonlongitude)")
+        let url = URL(String: "\(StationUrl)&x=\(jsonlatitudeString)&y=\(jsonlongitudeString)")
         print(url)
         let jsondate = try! Data(contentsOf: url!)
         let json = try! JSONSerialization.jsonObject(with: jsondate, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
@@ -189,8 +195,8 @@ class ViewController: UIViewController {
     //駅から路線コード取得、路線一覧取得
     func stationcode (station_name:String){
         //駅名から駅コードを取得
-        let resultStation : [String] = loadCSV(filename: "station20170403free")
-        let resultStationRow = resultStation[1]
+        var resultStation : [String] = loadCSV(filename: "station20170403free")
+        var resultStationRow = resultStation[2]
         let splitStationRow = resultStationRow.components(separatedBy: ",")
         print(splitStationRow[5]) //路線コード取得
         
