@@ -13,6 +13,11 @@ import GoogleMaps
 
 import GooglePlaces
 
+import Alamofire
+import SwiftyJSON
+
+import SWXMLHash
+
 class ViewController: UIViewController {
     
     //緯度軽度
@@ -28,7 +33,7 @@ class ViewController: UIViewController {
     var apikey = ""
     
     //SimpleAPI　最寄り駅検索
-    let StationUrl = "http://map.simpleapi.net/stationapi/?output=json"
+    let StationUrl = "http://map.simpleapi.net/stationapi"
     
     //apikeyを持ってくる
     func getKeys(){
@@ -83,9 +88,9 @@ class ViewController: UIViewController {
         //CSVファイルの読み込み
         loadCSV(filename: "station20170403free")
         //stationcode取得
-        stationcode(station_name: "新宿")
+        stationcode(station_name: "田町")
         //CSVファイルの読み込み
-        loadCSV(filename: "line20170403free")
+        //loadCSV(filename: "line20170403free")
         
     }
     
@@ -139,6 +144,40 @@ class ViewController: UIViewController {
     
     //Simple API　最寄り駅検索
     func getcloserstation(){
+        
+        let jsonlatitudeString : String = "\(String(describing: jsonlatitude))"
+        let jsonlongitudeString : String = "\(String(describing: jsonlongitude))"
+        print(jsonlatitudeString)
+        print(jsonlongitudeString)
+        
+        let url = "\(StationUrl)?x=\(jsonlongitudeString)&y=\(jsonlatitude)"
+        Alamofire.request(url).response{ response in
+            let xml = SWXMLHash.parse(response.data!)
+            //print(xml)
+            //print(xml["name"].element?.text)
+        }
+
+
+        /*
+        let url:String = "\(StationUrl)&x=\(jsonlatitudeString)&y=\(jsonlongitudeString)"
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default).responseJSON{ response in
+            
+            switch response.result {
+            case .success:
+                let json:JSON = JSON(response.result.value ?? kill)
+                print(json)
+                print(json["title"])
+                print(json["description"]["text"])
+                //self.showWeatherAlert(title: json["title"].stringValue,message: json["description"]["text"].stringValue)
+            case .failure(let error):
+                print(error)
+            }
+        }*/
+
+    }
+    
+    /*
+    func getcloserstation(){
     
         let jsonlatitudeString : String = "\(String(describing: jsonlatitude))"
         let jsonlongitudeString : String = "\(String(describing: jsonlongitude))"
@@ -148,15 +187,17 @@ class ViewController: UIViewController {
         print(jsonlongitude)
         print(StationUrl)
         
-        /*
-        let url = URL(String: "\(StationUrl)&x=\(jsonlatitudeString)&y=\(jsonlongitudeString)")
+        //string型をURL型を変える。URL(string 小文字。
+        let url = URL(string: "\(StationUrl)&x=\(jsonlatitudeString)&y=\(jsonlongitudeString)")
         print(url)
-        let jsondate = try! Data(contentsOf: url!)
-        let json = try! JSONSerialization.jsonObject(with: jsondate, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+        //URLを叩いたデータを持ってきてデータ型をjsondataに入れる
+        let jsondata = try! Data(contentsOf: url!)
+        //jsondataをswiftで扱えるdictionary型に変更
+        let json = try! JSONSerialization.jsonObject(with: jsondata, options: JSONSerialization.ReadingOptions.mutableContainers)
         print(json)
-        */
     
     }
+   */
     
     
     //CSVファイルの読み込みメソッド。引数にファイル名、返り値にString型の配列。
@@ -195,16 +236,15 @@ class ViewController: UIViewController {
     //駅から路線コード取得、路線一覧取得
     func stationcode (station_name:String){
         //駅名から駅コードを取得
-        var resultStation : [String] = loadCSV(filename: "station20170403free")
-        var resultStationRow = resultStation[2]
-        let splitStationRow = resultStationRow.components(separatedBy: ",")
-        print(splitStationRow[5]) //路線コード取得
-        
-        //路線コードから路線を取得
-        let resultLine : [String] = loadCSV(filename: "line20170403free")
-        let resultLineRow = resultLine[1]
-        let splitLineRow = resultLineRow.components(separatedBy: ",")
-        print(splitLineRow[2]) //路線取得
+        let resultStations : [String] = loadCSV(filename: "station20170403free")
+        for resultStation in resultStations {
+            let splitStationRow = resultStation.components(separatedBy: ",")
+            if splitStationRow.count < 3 { return }
+            let stationName = splitStationRow[2]
+            if stationName == "田町" {
+                print(splitStationRow)
+            }
+        }
         
     }
     
