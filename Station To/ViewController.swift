@@ -31,12 +31,20 @@ class ViewController: UIViewController {
     //最寄り駅の変数定義
     var closerstation : String!
     
+    
     //Google Maps Geocoding API リクエストの形式 出力が JSON
     let LocationUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     var apikey = ""
     
     //SimpleAPI　最寄り駅検索
     let StationUrl = "http://map.simpleapi.net/stationapi"
+    
+    //駅グループAPI　駅コードから路線一覧取得
+    //駅コードの変数の定義
+    var Stationcode : String!
+    let LineUrl = "http://www.ekidata.jp/api/g/"
+    //路線変数の定義
+    var line : String!
     
     //apikeyを持ってくる
     func getKeys(){
@@ -145,10 +153,11 @@ class ViewController: UIViewController {
     
     //Simple API　最寄り駅検索
     func getcloserstation(){
-        
+        //Int型の緯度経度を文字列型に変換
         let _ : String = "\(String(describing: jsonlatitude))"
         let jsonlongitudeString : String = "\(String(describing: jsonlongitude))"
         
+        //Alamofireを使って緯度経度から最寄り駅APIを使用。SWXMLHashを使い、XMLにより取得。
         let url = "\(StationUrl)?x=\(jsonlongitudeString)&y=\(jsonlatitude)"
         Alamofire.request(url).response{ response in
             let xml = SWXMLHash.parse(response.data!)
@@ -160,7 +169,7 @@ class ViewController: UIViewController {
             //CSVファイルの読み込み
             self.loadCSV(filename: "station20170403free")
             
-            
+            //「駅」という文字列を削除
             if let range = self.closerstation.range(of: "駅") {
                 self.closerstation.removeSubrange(range)
                 print(self.closerstation)
@@ -256,7 +265,23 @@ class ViewController: UIViewController {
             if splitStationRow.count < 3 { return }
             let stationName = splitStationRow[2]
             if stationName == closerstation {
-                print(splitStationRow)
+                Stationcode = splitStationRow[1]
+                print(splitStationRow[1])//駅コード表示
+                print(Stationcode)
+                
+                //Alamofireを使って緯度経度から駅グループAPIを使用。SWXMLHashを使い、XMLにより取得。
+                //stationcodeを文字列型からInt型に変換
+                let StationcodeInt : Int = Int(Stationcode)!
+                
+                let url = "\(LineUrl)\(StationcodeInt).xml"
+                print(url)
+                Alamofire.request(url).response{ response in
+                    let xml = SWXMLHash.parse(response.data!)
+                    print(xml)
+                    
+                    self.line = (xml["ekidata"]["station_g"][1]["line_name"].element?.text)
+                    print(self.line)
+                
             }
         }
         
@@ -265,4 +290,5 @@ class ViewController: UIViewController {
     
     
 
+}
 }
