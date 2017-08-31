@@ -17,7 +17,6 @@
 		D4B346A41F3EA10400924C3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A31F3EA10400924C3D /* Assets.xcassets */; };
 		D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A51F3EA10400924C3D /* LaunchScreen.storyboard */; };
 		D4F102CA1F5280C2008FC4AC /* station20170403free.csv in Resources */ = {isa = PBXBuildFile; fileRef = D4F102C91F5280C2008FC4AC /* station20170403free.csv */; };
-		D4F102CC1F52BA30008FC4AC /* line20170403free.csv in Resources */ = {isa = PBXBuildFile; fileRef = D4F102CB1F52BA30008FC4AC /* line20170403free.csv */; };
 		D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */; };
 		D4F102D01F52BE59008FC4AC /* train.png in Resources */ = {isa = PBXBuildFile; fileRef = D4F102CF1F52BE59008FC4AC /* train.png */; };
 /* End PBXBuildFile section */
@@ -37,7 +36,6 @@
 		D4B346A61F3EA10400924C3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4B346A81F3EA10400924C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4F102C91F5280C2008FC4AC /* station20170403free.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = station20170403free.csv; path = ../../../station20170403free.csv; sourceTree = "<group>"; };
-		D4F102CB1F52BA30008FC4AC /* line20170403free.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = line20170403free.csv; path = ../../../line20170403free.csv; sourceTree = "<group>"; };
 		D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
 		D4F102CF1F52BE59008FC4AC /* train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = train.png; path = ../../../train.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				D4F102CF1F52BE59008FC4AC /* train.png */,
-				D4F102CB1F52BA30008FC4AC /* line20170403free.csv */,
 				D4F102C91F5280C2008FC4AC /* station20170403free.csv */,
 				D4B3469C1F3EA10400924C3D /* AppDelegate.swift */,
 				D4B3469E1F3EA10400924C3D /* ViewController.swift */,
@@ -176,7 +173,6 @@
 				D4F102CA1F5280C2008FC4AC /* station20170403free.csv in Resources */,
 				D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */,
 				D4F102D01F52BE59008FC4AC /* train.png in Resources */,
-				D4F102CC1F52BA30008FC4AC /* line20170403free.csv in Resources */,
 				D4AA4F221F3F2D8B0028E581 /* Default-568h@2x.png in Resources */,
 				D4B346A41F3EA10400924C3D /* Assets.xcassets in Resources */,
 				D4B346A21F3EA10400924C3D /* Main.storyboard in Resources */,

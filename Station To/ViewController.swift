@@ -28,6 +28,9 @@ class ViewController: UIViewController {
     var jsonlatitude : Double = 35.689407
     var jsonlongitude : Double = 139.700306
     
+    //最寄り駅の変数定義
+    var closerstation : String!
+    
     //Google Maps Geocoding API リクエストの形式 出力が JSON
     let LocationUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     var apikey = ""
@@ -41,7 +44,7 @@ class ViewController: UIViewController {
         if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)!
             apikey = keys["apikey"] as! String
-            print(apikey)
+            //print(apikey)
         }
         
     }
@@ -86,11 +89,9 @@ class ViewController: UIViewController {
         //最寄り駅取得
         getcloserstation()
         //CSVファイルの読み込み
-        loadCSV(filename: "station20170403free")
+        //loadCSV(filename: "station20170403free")
         //stationcode取得
-        stationcode(station_name: "田町")
-        //CSVファイルの読み込み
-        //loadCSV(filename: "line20170403free")
+        //stationcode(station_name: "田町")
         
     }
     
@@ -114,15 +115,15 @@ class ViewController: UIViewController {
         
         //Foundationオブジェクトで表現されたデータをJSONSerializationでJSONオブジェクト(Data)に変換
         let json = try! JSONSerialization.jsonObject(with: jsondata, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-        print(json)
+        //print(json)
         let resultArray = json ["results"] as! NSArray
-        print(resultArray)
+        //print(resultArray)
         let result = resultArray[0] as! NSDictionary
-        print(result)
+        //print(result)
         let geometry = result ["geometry"] as! NSDictionary
-        print(geometry)
+        //print(geometry)
         let location = geometry["location"] as! NSDictionary
-        print(location)
+        //print(location)
         
         jsonlatitude = (location["lat"] as! Double)
         jsonlongitude = (location["lng"] as! Double)
@@ -145,16 +146,29 @@ class ViewController: UIViewController {
     //Simple API　最寄り駅検索
     func getcloserstation(){
         
-        let jsonlatitudeString : String = "\(String(describing: jsonlatitude))"
+        let _ : String = "\(String(describing: jsonlatitude))"
         let jsonlongitudeString : String = "\(String(describing: jsonlongitude))"
-        print(jsonlatitudeString)
-        print(jsonlongitudeString)
         
         let url = "\(StationUrl)?x=\(jsonlongitudeString)&y=\(jsonlatitude)"
         Alamofire.request(url).response{ response in
             let xml = SWXMLHash.parse(response.data!)
-            //print(xml)
-            //print(xml["name"].element?.text)
+            print(xml)
+            
+            self.closerstation = (xml["result"]["station"][1]["name"].element?.text)
+            print(self.closerstation)
+            
+            //CSVファイルの読み込み
+            self.loadCSV(filename: "station20170403free")
+            
+            
+            if let range = self.closerstation.range(of: "駅") {
+                self.closerstation.removeSubrange(range)
+                print(self.closerstation)
+            }
+
+            //stationcode取得
+            self.stationcode(station_name: self.closerstation)
+            
         }
 
 
@@ -241,7 +255,7 @@ class ViewController: UIViewController {
             let splitStationRow = resultStation.components(separatedBy: ",")
             if splitStationRow.count < 3 { return }
             let stationName = splitStationRow[2]
-            if stationName == "田町" {
+            if stationName == closerstation {
                 print(splitStationRow)
             }
         }
