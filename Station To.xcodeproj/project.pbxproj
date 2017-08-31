@@ -16,6 +16,9 @@
 		D4B346A21F3EA10400924C3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A01F3EA10400924C3D /* Main.storyboard */; };
 		D4B346A41F3EA10400924C3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A31F3EA10400924C3D /* Assets.xcassets */; };
 		D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A51F3EA10400924C3D /* LaunchScreen.storyboard */; };
+		D4F061491F57E060008DD89B /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F061481F57E060008DD89B /* MypageViewController.swift */; };
+		D4F0614B1F57E070008DD89B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0614A1F57E070008DD89B /* SearchViewController.swift */; };
+		D4F0614D1F57E0A3008DD89B /* CheckinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */; };
 		D4F102CA1F5280C2008FC4AC /* station20170403free.csv in Resources */ = {isa = PBXBuildFile; fileRef = D4F102C91F5280C2008FC4AC /* station20170403free.csv */; };
 		D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */; };
 		D4F102D01F52BE59008FC4AC /* train.png in Resources */ = {isa = PBXBuildFile; fileRef = D4F102CF1F52BE59008FC4AC /* train.png */; };
@@ -35,6 +38,9 @@
 		D4B346A31F3EA10400924C3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B346A61F3EA10400924C3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4B346A81F3EA10400924C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4F061481F57E060008DD89B /* MypageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
+		D4F0614A1F57E070008DD89B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinViewController.swift; sourceTree = "<group>"; };
 		D4F102C91F5280C2008FC4AC /* station20170403free.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = station20170403free.csv; path = ../../../station20170403free.csv; sourceTree = "<group>"; };
 		D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
 		D4F102CF1F52BE59008FC4AC /* train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = train.png; path = ../../../train.png; sourceTree = "<group>"; };
@@ -99,6 +105,9 @@
 				D4B3469E1F3EA10400924C3D /* ViewController.swift */,
 				D4B346A01F3EA10400924C3D /* Main.storyboard */,
 				D4B346A31F3EA10400924C3D /* Assets.xcassets */,
+				D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */,
+				D4F0614A1F57E070008DD89B /* SearchViewController.swift */,
+				D4F061481F57E060008DD89B /* MypageViewController.swift */,
 				D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */,
 				D4B346A51F3EA10400924C3D /* LaunchScreen.storyboard */,
 				D4B346A81F3EA10400924C3D /* Info.plist */,
@@ -249,9 +258,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F0614B1F57E070008DD89B /* SearchViewController.swift in Sources */,
 				D4B3469F1F3EA10400924C3D /* ViewController.swift in Sources */,
 				D4B3469D1F3EA10400924C3D /* AppDelegate.swift in Sources */,
 				D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */,
+				D4F0614D1F57E0A3008DD89B /* CheckinViewController.swift in Sources */,
+				D4F061491F57E060008DD89B /* MypageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
