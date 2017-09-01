@@ -9,6 +9,9 @@
 import UIKit
 
 class CheckinViewController: UIViewController {
+    
+    @IBOutlet var inputTextField : UITextField!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()

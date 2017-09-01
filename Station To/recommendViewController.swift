@@ -1,14 +1,14 @@
 //
-//  SearchViewController.swift
-//  
+//  recommendViewController.swift
+//  Station To
 //
-//  Created by 渡辺早紀 on 2017/08/31.
-//
+//  Created by 渡辺早紀 on 2017/09/01.
+//  Copyright © 2017年 Saki Watanabe. All rights reserved.
 //
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class recommendViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

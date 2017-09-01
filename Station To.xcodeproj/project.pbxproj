@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		A7FC3F68E93027755869BE8E /* Pods_Station_To.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB8E88D083172820B1E7281 /* Pods_Station_To.framework */; };
 		D42C9DB71F591E17006DF703 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C9DB61F591E17006DF703 /* MainTabBarController.swift */; };
+		D42C9DB91F593044006DF703 /* recommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C9DB81F593044006DF703 /* recommendViewController.swift */; };
+		D42C9DC01F593434006DF703 /* TrainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C9DBE1F593434006DF703 /* TrainTableViewCell.swift */; };
+		D42C9DC11F593434006DF703 /* TrainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42C9DBF1F593434006DF703 /* TrainTableViewCell.xib */; };
 		D47761BD1F3FB02C004F9C31 /* CocoaPods-version.yml in Frameworks */ = {isa = PBXBuildFile; fileRef = D47761BC1F3FB02C004F9C31 /* CocoaPods-version.yml */; };
 		D49E9AF21F46715000781F71 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49E9AF11F46715000781F71 /* Keys.plist */; };
 		D4AA4F221F3F2D8B0028E581 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AA4F211F3F2D8B0028E581 /* Default-568h@2x.png */; };
@@ -21,7 +24,6 @@
 		D4EDD4A41F590A86001B6B0C /* icons8_検索@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EDD4A31F590A86001B6B0C /* icons8_検索@2x.png */; };
 		D4EDD4A61F590A94001B6B0C /* icons_mypage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EDD4A51F590A94001B6B0C /* icons_mypage@2x.png */; };
 		D4F061491F57E060008DD89B /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F061481F57E060008DD89B /* MypageViewController.swift */; };
-		D4F0614B1F57E070008DD89B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0614A1F57E070008DD89B /* SearchViewController.swift */; };
 		D4F0614D1F57E0A3008DD89B /* CheckinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */; };
 		D4F102CA1F5280C2008FC4AC /* station20170403free.csv in Resources */ = {isa = PBXBuildFile; fileRef = D4F102C91F5280C2008FC4AC /* station20170403free.csv */; };
 		D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */; };
@@ -33,6 +35,9 @@
 		6FA6B595751EF78D0BE333BD /* Pods-Station To.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Station To.release.xcconfig"; path = "Pods/Target Support Files/Pods-Station To/Pods-Station To.release.xcconfig"; sourceTree = "<group>"; };
 		A1DE131306868F45500C4956 /* Pods-Station To.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Station To.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Station To/Pods-Station To.debug.xcconfig"; sourceTree = "<group>"; };
 		D42C9DB61F591E17006DF703 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		D42C9DB81F593044006DF703 /* recommendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recommendViewController.swift; sourceTree = "<group>"; };
+		D42C9DBE1F593434006DF703 /* TrainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainTableViewCell.swift; sourceTree = "<group>"; };
+		D42C9DBF1F593434006DF703 /* TrainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrainTableViewCell.xib; sourceTree = "<group>"; };
 		D47761BC1F3FB02C004F9C31 /* CocoaPods-version.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = "CocoaPods-version.yml"; path = "../../../Downloads/Specs-master/CocoaPods-version.yml"; sourceTree = "<group>"; };
 		D49E9AF11F46715000781F71 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		D4AA4F211F3F2D8B0028E581 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -47,7 +52,6 @@
 		D4EDD4A31F590A86001B6B0C /* icons8_検索@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8_検索@2x.png"; sourceTree = "<group>"; };
 		D4EDD4A51F590A94001B6B0C /* icons_mypage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons_mypage@2x.png"; sourceTree = "<group>"; };
 		D4F061481F57E060008DD89B /* MypageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
-		D4F0614A1F57E070008DD89B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinViewController.swift; sourceTree = "<group>"; };
 		D4F102C91F5280C2008FC4AC /* station20170403free.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = station20170403free.csv; path = ../../../station20170403free.csv; sourceTree = "<group>"; };
 		D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +89,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D42C9DBA1F593059006DF703 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D4B3469E1F3EA10400924C3D /* ViewController.swift */,
+				D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */,
+				D42C9DBE1F593434006DF703 /* TrainTableViewCell.swift */,
+				D42C9DBF1F593434006DF703 /* TrainTableViewCell.xib */,
+				D42C9DB81F593044006DF703 /* recommendViewController.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		D42C9DBB1F59307D006DF703 /* mypage */ = {
+			isa = PBXGroup;
+			children = (
+				D4F061481F57E060008DD89B /* MypageViewController.swift */,
+			);
+			name = mypage;
+			sourceTree = "<group>";
+		};
+		D42C9DBD1F5930A2006DF703 /* CheackIn */ = {
+			isa = PBXGroup;
+			children = (
+				D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */,
+			);
+			name = CheackIn;
+			sourceTree = "<group>";
+		};
 		D4B346901F3EA10400924C3D = {
 			isa = PBXGroup;
 			children = (
@@ -108,16 +140,14 @@
 			isa = PBXGroup;
 			children = (
 				D4EDD4A21F590A61001B6B0C /* images */,
+				D42C9DBD1F5930A2006DF703 /* CheackIn */,
+				D42C9DBA1F593059006DF703 /* Search */,
+				D42C9DBB1F59307D006DF703 /* mypage */,
 				D4F102C91F5280C2008FC4AC /* station20170403free.csv */,
 				D4B3469C1F3EA10400924C3D /* AppDelegate.swift */,
-				D4B3469E1F3EA10400924C3D /* ViewController.swift */,
 				D4B346A01F3EA10400924C3D /* Main.storyboard */,
 				D4B346A31F3EA10400924C3D /* Assets.xcassets */,
 				D42C9DB61F591E17006DF703 /* MainTabBarController.swift */,
-				D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */,
-				D4F0614A1F57E070008DD89B /* SearchViewController.swift */,
-				D4F061481F57E060008DD89B /* MypageViewController.swift */,
-				D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */,
 				D4B346A51F3EA10400924C3D /* LaunchScreen.storyboard */,
 				D4B346A81F3EA10400924C3D /* Info.plist */,
 				D49E9AF11F46715000781F71 /* Keys.plist */,
@@ -199,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D42C9DC11F593434006DF703 /* TrainTableViewCell.xib in Resources */,
 				D4F102CA1F5280C2008FC4AC /* station20170403free.csv in Resources */,
 				D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */,
 				D4F102D01F52BE59008FC4AC /* train.png in Resources */,
@@ -281,10 +312,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4F0614B1F57E070008DD89B /* SearchViewController.swift in Sources */,
+				D42C9DB91F593044006DF703 /* recommendViewController.swift in Sources */,
 				D4B3469F1F3EA10400924C3D /* ViewController.swift in Sources */,
 				D4B3469D1F3EA10400924C3D /* AppDelegate.swift in Sources */,
 				D42C9DB71F591E17006DF703 /* MainTabBarController.swift in Sources */,
+				D42C9DC01F593434006DF703 /* TrainTableViewCell.swift in Sources */,
 				D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */,
 				D4F0614D1F57E0A3008DD89B /* CheckinViewController.swift in Sources */,
 				D4F061491F57E060008DD89B /* MypageViewController.swift in Sources */,

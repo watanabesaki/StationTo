@@ -18,8 +18,8 @@ import SwiftyJSON
 
 import SWXMLHash
 
-class ViewController: UIViewController {
-    
+class ViewController: UIViewController,UITextFieldDelegate {
+        
     //緯度軽度
     let latitude: CLLocationDegrees = 35.689407
     let longitude: CLLocationDegrees = 139.700306
@@ -43,8 +43,9 @@ class ViewController: UIViewController {
     //駅コードの変数の定義
     var Stationcode : String!
     let LineUrl = "http://www.ekidata.jp/api/g/"
+    
     //路線変数の定義
-    var line : String!
+    var line : [String] = []
     
     //apikeyを持ってくる
     func getKeys(){
@@ -90,6 +91,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+                
         //APIkeyの読み込み
         getKeys()
         //緯度経度の取得
@@ -279,16 +281,26 @@ class ViewController: UIViewController {
                     let xml = SWXMLHash.parse(response.data!)
                     print(xml)
                     
-                    self.line = (xml["ekidata"]["station_g"][1]["line_name"].element?.text)
+                    self.line.append((xml["ekidata"]["station_g"][0]["line_name"].element?.text)!)
+                    self.line.append((xml["ekidata"]["station_g"][1]["line_name"].element?.text)!)
+                    self.line.append((xml["ekidata"]["station_g"][2]["line_name"].element?.text)!)
+                    
                     print(self.line)
-                
+                    
             }
         }
         
     }
     
-    
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //次の画面を取得
+        let trainviewcontroller = segue.destination as! TrainViewController
+        //次の画面の変数にこの画面の変数を入れている
+        trainviewcontroller.Linemember = line
+        
+    }
     
 
-}
 }
