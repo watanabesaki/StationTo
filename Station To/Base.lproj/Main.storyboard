@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a7Y-wO-b9P">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--検索-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Station_To" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,13 +22,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="oD6-Sh-fso"/>
+                    <tabBarItem key="tabBarItem" title="検索" image="icons8_検索.png" selectedImage="icons8_検索.png" id="oD6-Sh-fso"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2284" y="-78.710644677661179"/>
         </scene>
-        <!--Item-->
+        <!--チェックイン-->
         <scene sceneID="5q3-FP-Rt0">
             <objects>
                 <viewController id="7SZ-qI-od3" customClass="CheckinViewController" customModule="Station_To" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,13 +41,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="B8D-5H-YvY"/>
+                    <tabBarItem key="tabBarItem" title="チェックイン" image="icons_map.png" selectedImage="icons_map.png" id="B8D-5H-YvY"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLg-00-unO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2284" y="608.54572713643188"/>
         </scene>
-        <!--Item-->
+        <!--マイページ-->
         <scene sceneID="JKy-Sh-VxQ">
             <objects>
                 <viewController id="JNJ-Ry-c4D" customClass="MypageViewController" customModule="Station_To" customModuleProvider="target" sceneMemberID="viewController">
@@ -60,7 +60,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="7Zv-ph-UDJ"/>
+                    <tabBarItem key="tabBarItem" title="マイページ" image="icons_mypage.png" selectedImage="icons_mypage.png" id="7Zv-ph-UDJ">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="SelectedImage" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7UQ-dy-NOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -90,12 +94,13 @@
             </objects>
             <point key="canvasLocation" x="3527" y="-79"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="BMv-4V-Rtg">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="a7Y-wO-b9P" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="a7Y-wO-b9P" customClass="MainTabBarController" customModule="Station_To" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="YBW-W8-4JZ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -111,6 +116,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icons8_検索.png" width="25" height="25"/>
+        <image name="icons_map.png" width="25" height="25"/>
+        <image name="icons_mypage.png" width="24" height="24"/>
         <image name="train.png" width="764" height="50"/>
     </resources>
 </document>

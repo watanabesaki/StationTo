@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A7FC3F68E93027755869BE8E /* Pods_Station_To.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB8E88D083172820B1E7281 /* Pods_Station_To.framework */; };
+		D42C9DB71F591E17006DF703 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C9DB61F591E17006DF703 /* MainTabBarController.swift */; };
 		D47761BD1F3FB02C004F9C31 /* CocoaPods-version.yml in Frameworks */ = {isa = PBXBuildFile; fileRef = D47761BC1F3FB02C004F9C31 /* CocoaPods-version.yml */; };
 		D49E9AF21F46715000781F71 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49E9AF11F46715000781F71 /* Keys.plist */; };
 		D4AA4F221F3F2D8B0028E581 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AA4F211F3F2D8B0028E581 /* Default-568h@2x.png */; };
@@ -16,6 +17,9 @@
 		D4B346A21F3EA10400924C3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A01F3EA10400924C3D /* Main.storyboard */; };
 		D4B346A41F3EA10400924C3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A31F3EA10400924C3D /* Assets.xcassets */; };
 		D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A51F3EA10400924C3D /* LaunchScreen.storyboard */; };
+		D4EDD4A11F590A58001B6B0C /* icons_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EDD4A01F590A58001B6B0C /* icons_map@2x.png */; };
+		D4EDD4A41F590A86001B6B0C /* icons8_検索@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EDD4A31F590A86001B6B0C /* icons8_検索@2x.png */; };
+		D4EDD4A61F590A94001B6B0C /* icons_mypage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EDD4A51F590A94001B6B0C /* icons_mypage@2x.png */; };
 		D4F061491F57E060008DD89B /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F061481F57E060008DD89B /* MypageViewController.swift */; };
 		D4F0614B1F57E070008DD89B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0614A1F57E070008DD89B /* SearchViewController.swift */; };
 		D4F0614D1F57E0A3008DD89B /* CheckinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */; };
@@ -28,6 +32,7 @@
 		0FB8E88D083172820B1E7281 /* Pods_Station_To.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Station_To.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA6B595751EF78D0BE333BD /* Pods-Station To.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Station To.release.xcconfig"; path = "Pods/Target Support Files/Pods-Station To/Pods-Station To.release.xcconfig"; sourceTree = "<group>"; };
 		A1DE131306868F45500C4956 /* Pods-Station To.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Station To.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Station To/Pods-Station To.debug.xcconfig"; sourceTree = "<group>"; };
+		D42C9DB61F591E17006DF703 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D47761BC1F3FB02C004F9C31 /* CocoaPods-version.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = "CocoaPods-version.yml"; path = "../../../Downloads/Specs-master/CocoaPods-version.yml"; sourceTree = "<group>"; };
 		D49E9AF11F46715000781F71 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		D4AA4F211F3F2D8B0028E581 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -38,6 +43,9 @@
 		D4B346A31F3EA10400924C3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B346A61F3EA10400924C3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4B346A81F3EA10400924C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4EDD4A01F590A58001B6B0C /* icons_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons_map@2x.png"; sourceTree = "<group>"; };
+		D4EDD4A31F590A86001B6B0C /* icons8_検索@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8_検索@2x.png"; sourceTree = "<group>"; };
+		D4EDD4A51F590A94001B6B0C /* icons_mypage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons_mypage@2x.png"; sourceTree = "<group>"; };
 		D4F061481F57E060008DD89B /* MypageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		D4F0614A1F57E070008DD89B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinViewController.swift; sourceTree = "<group>"; };
@@ -99,12 +107,13 @@
 		D4B3469B1F3EA10400924C3D /* Station To */ = {
 			isa = PBXGroup;
 			children = (
-				D4F102CF1F52BE59008FC4AC /* train.png */,
+				D4EDD4A21F590A61001B6B0C /* images */,
 				D4F102C91F5280C2008FC4AC /* station20170403free.csv */,
 				D4B3469C1F3EA10400924C3D /* AppDelegate.swift */,
 				D4B3469E1F3EA10400924C3D /* ViewController.swift */,
 				D4B346A01F3EA10400924C3D /* Main.storyboard */,
 				D4B346A31F3EA10400924C3D /* Assets.xcassets */,
+				D42C9DB61F591E17006DF703 /* MainTabBarController.swift */,
 				D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */,
 				D4F0614A1F57E070008DD89B /* SearchViewController.swift */,
 				D4F061481F57E060008DD89B /* MypageViewController.swift */,
@@ -114,6 +123,17 @@
 				D49E9AF11F46715000781F71 /* Keys.plist */,
 			);
 			path = "Station To";
+			sourceTree = "<group>";
+		};
+		D4EDD4A21F590A61001B6B0C /* images */ = {
+			isa = PBXGroup;
+			children = (
+				D4EDD4A51F590A94001B6B0C /* icons_mypage@2x.png */,
+				D4EDD4A31F590A86001B6B0C /* icons8_検索@2x.png */,
+				D4F102CF1F52BE59008FC4AC /* train.png */,
+				D4EDD4A01F590A58001B6B0C /* icons_map@2x.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,9 +202,12 @@
 				D4F102CA1F5280C2008FC4AC /* station20170403free.csv in Resources */,
 				D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */,
 				D4F102D01F52BE59008FC4AC /* train.png in Resources */,
+				D4EDD4A41F590A86001B6B0C /* icons8_検索@2x.png in Resources */,
 				D4AA4F221F3F2D8B0028E581 /* Default-568h@2x.png in Resources */,
 				D4B346A41F3EA10400924C3D /* Assets.xcassets in Resources */,
 				D4B346A21F3EA10400924C3D /* Main.storyboard in Resources */,
+				D4EDD4A11F590A58001B6B0C /* icons_map@2x.png in Resources */,
+				D4EDD4A61F590A94001B6B0C /* icons_mypage@2x.png in Resources */,
 				D49E9AF21F46715000781F71 /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,6 +284,7 @@
 				D4F0614B1F57E070008DD89B /* SearchViewController.swift in Sources */,
 				D4B3469F1F3EA10400924C3D /* ViewController.swift in Sources */,
 				D4B3469D1F3EA10400924C3D /* AppDelegate.swift in Sources */,
+				D42C9DB71F591E17006DF703 /* MainTabBarController.swift in Sources */,
 				D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */,
 				D4F0614D1F57E0A3008DD89B /* CheckinViewController.swift in Sources */,
 				D4F061491F57E060008DD89B /* MypageViewController.swift in Sources */,
