@@ -28,6 +28,7 @@
 		D4F102CA1F5280C2008FC4AC /* station20170403free.csv in Resources */ = {isa = PBXBuildFile; fileRef = D4F102C91F5280C2008FC4AC /* station20170403free.csv */; };
 		D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */; };
 		D4F102D01F52BE59008FC4AC /* train.png in Resources */ = {isa = PBXBuildFile; fileRef = D4F102CF1F52BE59008FC4AC /* train.png */; };
+		D4F67B7E1F5AF140004A245D /* GDHighwayGoJA-Rev112b2-OTF in Resources */ = {isa = PBXBuildFile; fileRef = D4F67B7D1F5AF140004A245D /* GDHighwayGoJA-Rev112b2-OTF */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		D4F102C91F5280C2008FC4AC /* station20170403free.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = station20170403free.csv; path = ../../../station20170403free.csv; sourceTree = "<group>"; };
 		D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
 		D4F102CF1F52BE59008FC4AC /* train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = train.png; path = ../../../train.png; sourceTree = "<group>"; };
+		D4F67B7D1F5AF140004A245D /* GDHighwayGoJA-Rev112b2-OTF */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "GDHighwayGoJA-Rev112b2-OTF"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 		D4B3469B1F3EA10400924C3D /* Station To */ = {
 			isa = PBXGroup;
 			children = (
+				D4F67B7D1F5AF140004A245D /* GDHighwayGoJA-Rev112b2-OTF */,
 				D4EDD4A21F590A61001B6B0C /* images */,
 				D42C9DBD1F5930A2006DF703 /* CheackIn */,
 				D42C9DBA1F593059006DF703 /* Search */,
@@ -229,6 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F67B7E1F5AF140004A245D /* GDHighwayGoJA-Rev112b2-OTF in Resources */,
 				D42C9DC11F593434006DF703 /* TrainTableViewCell.xib in Resources */,
 				D4F102CA1F5280C2008FC4AC /* station20170403free.csv in Resources */,
 				D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */,
