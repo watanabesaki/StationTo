@@ -18,14 +18,18 @@ import GooglePlaces
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
-    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //APIKeyの追加
+        
+
+        
         GMSServices.provideAPIKey("AIzaSyD0yp8a3B_41ArpOOf-bB4wKMoyS50sKr4")
         
         GMSPlacesClient.provideAPIKey("AIzaSyD0yp8a3B_41ArpOOf-bB4wKMoyS50sKr4")
+        
+        
 
         // Override point for customization after application launch.
         return true
@@ -55,4 +59,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
