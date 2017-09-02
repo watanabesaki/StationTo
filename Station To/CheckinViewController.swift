@@ -8,6 +8,8 @@
 
 import UIKit
 
+import GooglePlaces
+
 class CheckinViewController: UIViewController {
     
     @IBOutlet var inputTextField : UITextField!

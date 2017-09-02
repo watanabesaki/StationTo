@@ -165,7 +165,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
             let xml = SWXMLHash.parse(response.data!)
             print(xml)
             
-            self.closerstation = (xml["result"]["station"][1]["name"].element?.text)
+            self.closerstation = (xml["result"]["station"][0]["name"].element?.text)
             print(self.closerstation)
             
             //CSVファイルの読み込み
@@ -279,11 +279,11 @@ class ViewController: UIViewController,UITextFieldDelegate {
                 print(url)
                 Alamofire.request(url).response{ response in
                     let xml = SWXMLHash.parse(response.data!)
-                    print(xml)
+                    //print(xml)
                     
                     self.line.append((xml["ekidata"]["station_g"][0]["line_name"].element?.text)!)
-                    self.line.append((xml["ekidata"]["station_g"][1]["line_name"].element?.text)!)
-                    self.line.append((xml["ekidata"]["station_g"][2]["line_name"].element?.text)!)
+                    //self.line.append((xml["ekidata"]["station_g"][1]["line_name"].element?.text)!)
+                    //self.line.append((xml["ekidata"]["station_g"][2]["line_name"].element?.text)!)
                     
                     print(self.line)
                     

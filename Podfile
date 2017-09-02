@@ -9,6 +9,7 @@ target 'Station To' do
 
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'SWXMLHash'
