@@ -29,10 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSPlacesClient.provideAPIKey("AIzaSyD0yp8a3B_41ArpOOf-bB4wKMoyS50sKr4")
         
-        
+        //初期TABBAR設定
+        let tabvc = self.window!.rootViewController as? UITabBarController
+        tabvc?.selectedIndex = 1 // 0 が一番左のタブ
 
-        // Override point for customization after application launch.
+        
         return true
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -56,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+
 
 
 }
