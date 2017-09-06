@@ -84,15 +84,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkQ-QA-rab">
-                                <rect key="frame" x="329" y="571" width="46" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="Nck-j1-ciV" kind="presentation" id="zpk-3u-0LL"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="チェックインした場所" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8E-eJ-I9U">
                                 <rect key="frame" x="59" y="425" width="266" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -342,8 +333,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="路線一覧" id="Paj-sP-ocb">
-                        <barButtonItem key="backBarButtonItem" title="戻る" id="7GJ-xR-lgG"/>
+                    <navigationItem key="navigationItem" title="路線一覧" id="rxS-lO-GWx">
+                        <barButtonItem key="backBarButtonItem" title="戻る" id="55I-u4-Xpw"/>
                     </navigationItem>
                     <connections>
                         <outlet property="LineTableView" destination="OR2-8p-Btf" id="eYj-mC-BQq"/>
@@ -351,10 +342,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9sQ-6W-si4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationItem title="路線一覧" id="Nvf-u8-ucC">
+                    <barButtonItem key="backBarButtonItem" systemItem="pageCurl" id="ih7-Yc-6jg"/>
+                </navigationItem>
             </objects>
             <point key="canvasLocation" x="3988" y="-79.610194902548727"/>
         </scene>
-        <!--Recommend View Controller-->
+        <!--おすすめルート一覧-->
         <scene sceneID="UGK-0d-pTk">
             <objects>
                 <viewController id="Dqo-hg-6HE" customClass="recommendViewController" customModule="Station_To" customModuleProvider="target" sceneMemberID="viewController">
@@ -367,6 +361,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="おすすめルート一覧" id="GDa-9c-GUf">
+                        <barButtonItem key="backBarButtonItem" title="戻る" id="s2k-1P-FeP"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CSv-Ht-LiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
