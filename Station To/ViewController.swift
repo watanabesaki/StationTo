@@ -18,8 +18,10 @@ import SwiftyJSON
 
 import SWXMLHash
 
-class ViewController: UIViewController,UITextFieldDelegate {
-        
+class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResultsViewControllerDelegate {
+    
+    
+    @IBOutlet var mapview: UIView!
     //緯度軽度
     let latitude: CLLocationDegrees = 35.689407
     let longitude: CLLocationDegrees = 139.700306
@@ -55,8 +57,19 @@ class ViewController: UIViewController,UITextFieldDelegate {
             apikey = keys["apikey"] as! String
             //print(apikey)
         }
-        
     }
+    
+    
+    
+    
+    //GMSAutocompleteResultsViewControllerの作成
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    //UISearchControllerを作成し、GMSAutocompleteResultsViewControllerの結果コントローラの引数として渡す
+    var searchController: UISearchController?
+    var resultView: UITextView?
+    
+    
+    
     
     //表示されるときにマップを表示
     override func loadView() {
@@ -77,14 +90,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         //階数ピッカー
         mapView.settings.indoorPicker = true
         //ビュー コントローラのビューに GMSMapView オブジェクトを設定
-        view = mapView
-        
-        // マーカーの作成
-        //let marker = GMSMarker()
-        //marker.position = CLLocationCoordinate2D (latitude: latitude,longitude: longitude)
-        //marker.title = "Sydney"
-        //marker.snippet = "Australia"
-        //marker.map = mapView
+        //view = mapView
     }
 
     override func viewDidLoad() {
@@ -98,17 +104,48 @@ class ViewController: UIViewController,UITextFieldDelegate {
         getLatLngForZip(zipCode: "東京都千代田区内幸町１丁目１−６")
         //最寄り駅取得
         getcloserstation()
-        //CSVファイルの読み込み
-        //loadCSV(filename: "station20170403free")
-        //stationcode取得
-        //stationcode(station_name: "田町")
         
+        //検索バーの追加
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
+        
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        
+        //検索バーの場所
+        let subView = UIView(frame: CGRect(x: 3, y: 30.0, width: 370.0, height: 60.0))
+        subView.isUserInteractionEnabled = true
+        subView.addSubview((searchController?.searchBar)!)
+        view.addSubview(subView)
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = true
     }
     
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
+        //searchController?.isActive = false
+        // Do something with the selected place.
+        print("Place name: \(place.name)")
+        print("Place address: \(String(describing: place.formattedAddress))")
+        print("Place attributions: \(String(describing: place.attributions))")
+    }
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {
+        print(error)
+    }
+    
+    func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 
     
@@ -151,7 +188,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         marker.position = CLLocationCoordinate2D(latitude: jsonlatitude, longitude: jsonlongitude)
         marker.map = mapView
         view = mapView
-        }
+    }
     
     //Simple API　最寄り駅検索
     func getcloserstation(){
@@ -165,8 +202,14 @@ class ViewController: UIViewController,UITextFieldDelegate {
             let xml = SWXMLHash.parse(response.data!)
             print(xml)
             
+            //最寄り駅表示
             self.closerstation = (xml["result"]["station"][0]["name"].element?.text)
             print(self.closerstation)
+            
+            //マーカー表示
+            
+
+            
             
             //CSVファイルの読み込み
             self.loadCSV(filename: "station20170403free")
@@ -276,7 +319,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
                 let StationcodeInt : Int = Int(Stationcode)!
                 
                 let url = "\(LineUrl)\(StationcodeInt).xml"
-                print(url)
+                //print(url)
                 Alamofire.request(url).response{ response in
                     let xml = SWXMLHash.parse(response.data!)
                     //print(xml)
