@@ -56,7 +56,7 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)!
             apikey = keys["apikey"] as! String
-            //print(apikey)
+            print(apikey)
         }
     }
     
