@@ -22,6 +22,7 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
     
     
     @IBOutlet var mapview: UIView!
+    
     //緯度軽度
     let latitude: CLLocationDegrees = 35.689407
     let longitude: CLLocationDegrees = 139.700306
@@ -82,15 +83,20 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         //GMSMapView オブジェクトをインスタンス化する際に、GMSCameraPosition オブジェクトを必須パラメータに渡す
         //GMSMapView の mapWithFrame: メソッドによって クラスを作成してインスタンス化
         //GMSMapView ビュー コントローラ上に配置するビューがこのマップだけである場合は、マップの frame に CGRectZero を指定
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        let mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: 100, height: 100), camera: camera)
         //現在地オン
         mapView.isMyLocationEnabled = true
         //現在地ボタン
         mapView.settings.myLocationButton = true
         //階数ピッカー
         mapView.settings.indoorPicker = true
+        
+        //padding
+        let mapInsets = UIEdgeInsets(top:400.0, left:0.0, bottom:0.0, right:0)
+        mapView.padding = mapInsets
+        
         //ビュー コントローラのビューに GMSMapView オブジェクトを設定
-        //view = mapView
+        view = mapView
     }
 
     override func viewDidLoad() {
@@ -102,8 +108,7 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         getKeys()
         //緯度経度の取得
         getLatLngForZip(zipCode: "東京都千代田区内幸町１丁目１−６")
-        //最寄り駅取得
-        getcloserstation()
+    
         
         //検索バーの追加
         resultsViewController = GMSAutocompleteResultsViewController()
@@ -178,6 +183,9 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         print(jsonlatitude)
         print(jsonlongitude)
         
+        
+        getcloserstation()
+        
         //マーカーの作成
         let camera = GMSCameraPosition.camera(withLatitude: jsonlatitude,
                                               longitude:jsonlongitude,
@@ -187,7 +195,9 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: jsonlatitude, longitude: jsonlongitude)
         marker.map = mapView
-        view = mapView
+        view = mapview
+        
+        
     }
     
     //Simple API　最寄り駅検索
