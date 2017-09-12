@@ -173,53 +173,12 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
     }
 
-    /*
-    func cancel() {
-        
-        self.stationInput.endEditing(true)
-        self.lineInput.endEditing(true)
-        self.numberOfLineInput.endEditing(true)
-        self.timeInput.endEditing(true)
-        
-//        if pickerview1.tag == 1{
-//            self.stationInput.text = ""
-//            self.stationInput.endEditing(true)
-//        }else if pickerview2.tag == 2{
-//            self.lineInput.text = ""
-//            self.lineInput.endEditing(true)
-//        }else if pickerview3.tag == 3{
-//            self.numberOfLineInput.text = ""
-//            self.numberOfLineInput.endEditing(true)
-//            
-//        }else{
-//            self.timeInput.text = ""
-//            self.timeInput.endEditing(true)
-//        }
-        
-    }
-     */
     
     func done() {
         self.stationInput.endEditing(true)
         self.lineInput.endEditing(true)
         self.numberOfLineInput.endEditing(true)
         self.timeInput.endEditing(true)
-
-
-        /*
-        if pickerview1.tag == 1 {
-            self.stationInput.endEditing(true)
-        }else if pickerview2.tag == 2{
-            self.lineInput.endEditing(true)
-        }else if pickerview3.tag == 3{
-            self.numberOfLineInput.endEditing(true)
-            
-        }else{
-            self.timeInput.endEditing(true)
-            
-        }
-         */
-        
         
     }
     

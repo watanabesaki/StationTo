@@ -25,9 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 
         
-        GMSServices.provideAPIKey("AIzaSyAPzzwEI3Whj8i34TGO-sxUybtiONjUXKY")
+        GMSServices.provideAPIKey("AIzaSyAThYP2DJpWwL7rbDxo4atYYr9tmMPCkwg")
         
-        GMSPlacesClient.provideAPIKey("AIzaSyAPzzwEI3Whj8i34TGO-sxUybtiONjUXKY")
+        GMSPlacesClient.provideAPIKey("AIzaSyCfEaChUZSG1nnNuBnSKhq5ppbGDaUobTY")
         
         //初期TABBAR設定
         let tabvc = self.window!.rootViewController as? UITabBarController

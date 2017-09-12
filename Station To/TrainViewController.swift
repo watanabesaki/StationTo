@@ -14,7 +14,7 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
     @IBOutlet var LineTableView : UITableView!
 
     //データを入れる変数
-    var Linemember : [String] = ["JR","メトロ"]
+    var Linemember : [String] = ["JR山手線","丸の内線"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,9 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
         
         print(Linemember)
         
-        
+        //トップに戻るボタンを作成
+        let leftButton = UIBarButtonItem(title: "戻る", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TrainViewController.goTop))
+        self.navigationItem.leftBarButtonItem = leftButton
         
     }
 
@@ -48,6 +50,7 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
     
     //tableviewに表示するデータの内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         //idをつけたcellの取得
         let cell = tableView.dequeueReusableCell(withIdentifier: "LineCell") as! TrainTableViewCell
         
@@ -56,6 +59,9 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
         //cell.ExitLabel.text = Line[IndexPath.row]
         //cell.NumberOfTrain.text = Line[IndexPath.row]
         
+        //値がないセルには線を表示しない
+        tableView.tableFooterView = UIView()
+        
         //cellを返す
         return cell
     }
@@ -63,19 +69,29 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
     //セルが押された時のアクション
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //画面遷移
-        //self.performSegue(withIdentifier: "toRecommend", sender: nil)
+        self.performSegue(withIdentifier:"toRecommend", sender: nil)
+        
+        //戻った時の選択状態解除
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     //何番目のセルが押されたか取得して値渡しする
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //画面取得
-        //let trainviewcontroller = segue.destination as! recommendViewController
+        let trainviewcontroller = segue.destination as! recommendViewController
         
         //今選択されているセルの取得
-        //let selectedIndex = LineTableView.indexPathForSelectedRow
+        let selectedIndex = LineTableView.indexPathForSelectedRow!
         
         //値を取得して値渡し
-        //trainviewcontroller.selectedName = [selectedIndex.row][]!
+        trainviewcontroller.selectedLineName = Linemember[selectedIndex.row]
+    }
+    
+    //戻るボタン押下時の呼び出しメソッド
+    func goTop() {
+        
+        //チェックイン画面に戻る。
+        self.navigationController?.popViewController(animated: true)
     }
 
     

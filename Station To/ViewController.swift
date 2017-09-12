@@ -107,7 +107,7 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         //APIkeyの読み込み
         getKeys()
         //緯度経度の取得
-        getLatLngForZip(zipCode: "東京都千代田区内幸町１丁目１−６")
+        //getLatLngForZip(zipCode: "東京都千代田区内幸町１丁目１−６")
     
         
         //検索バーの追加
@@ -121,10 +121,19 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         let subView = UIView(frame: CGRect(x: 3, y: 30.0, width: 370.0, height: 60.0))
         subView.isUserInteractionEnabled = true
         subView.addSubview((searchController?.searchBar)!)
-        view.addSubview(subView)
+        view = subView
         searchController?.searchBar.sizeToFit()
         searchController?.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
+        
+        //ナビゲーションバーの非表示
+        navigationController?.navigationBar.isTranslucent = false
+        searchController?.hidesNavigationBarDuringPresentation = false
+        // This makes the view area include the nav bar even though it is opaque.
+        // Adjust the view placement down.
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.edgesForExtendedLayout = .top
+        
     }
     
 
