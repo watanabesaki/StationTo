@@ -167,7 +167,18 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         
         //Foundationオブジェクトで表現されたデータをJSONSerializationでJSONオブジェクト(Data)に変換
         let json = try! JSONSerialization.jsonObject(with: jsondata, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-        //print(json)
+        print(json)
+        
+        if json["error_message"] != nil {
+            let alert = UIAlertController(title: "エラー", message: json["error_message"] as! String, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "リロード", style: .default, handler: { (action) in
+                self.getLatLngForZip(zipCode: zipCode)
+            })
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         let resultArray = json ["results"] as! NSArray
         //print(resultArray)
         let result = resultArray[0] as! NSDictionary
