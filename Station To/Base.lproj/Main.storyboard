@@ -346,6 +346,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5t-gI-We0">
+                                <rect key="frame" x="0.0" y="64" width="375" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.58034109469999995" blue="0.2901960784" alpha="0.58970997430000005" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="選択した駅名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1X-Af-LoC">
+                                <rect key="frame" x="133" y="77" width="109" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -355,6 +370,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="LineTableView" destination="OR2-8p-Btf" id="eYj-mC-BQq"/>
+                        <outlet property="selectedStationLabel" destination="P1X-Af-LoC" id="8Xy-GV-IJu"/>
                         <segue destination="Dqo-hg-6HE" kind="show" identifier="toRecommend" id="Vhi-Qq-duc"/>
                     </connections>
                 </viewController>
@@ -365,7 +381,7 @@
             </objects>
             <point key="canvasLocation" x="3988" y="-79.610194902548727"/>
         </scene>
-        <!--おすすめルート一覧-->
+        <!--おすすめ一覧-->
         <scene sceneID="UGK-0d-pTk">
             <objects>
                 <viewController id="Dqo-hg-6HE" customClass="recommendViewController" customModule="Station_To" customModuleProvider="target" sceneMemberID="viewController">
@@ -424,7 +440,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="おすすめルート一覧" id="GDa-9c-GUf">
+                    <navigationItem key="navigationItem" title="おすすめ一覧" id="GDa-9c-GUf">
                         <barButtonItem key="backBarButtonItem" title="戻る" id="s2k-1P-FeP"/>
                         <barButtonItem key="leftBarButtonItem" title="路線選択" id="Wa5-25-Uzf"/>
                     </navigationItem>

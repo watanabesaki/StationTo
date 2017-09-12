@@ -12,12 +12,18 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
     
     //TableViewの宣言
     @IBOutlet var LineTableView : UITableView!
+    
+    //選択した駅名変数定義
+    @IBOutlet var selectedStationLabel : UILabel!
+    var selectedStation : String = ""
 
     //データを入れる変数
-    var Linemember : [String] = ["JR山手線","丸の内線"]
+    var Linemember : [String] = ["JR山手線","JR京浜東北線"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        selectedStationLabel.text = "新橋駅"
 
         //データソースメソッドをこのファイル内で処理
         LineTableView.dataSource = self
@@ -42,6 +48,10 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+    
     
     //tableviewに表示するデータの個数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
