@@ -121,7 +121,7 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         let subView = UIView(frame: CGRect(x: 3, y: 30.0, width: 370.0, height: 60.0))
         subView.isUserInteractionEnabled = true
         subView.addSubview((searchController?.searchBar)!)
-        view = subView
+        view.addSubview(subView)
         searchController?.searchBar.sizeToFit()
         searchController?.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
@@ -135,6 +135,11 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         self.edgesForExtendedLayout = .top
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        searchController?.searchBar.becomeFirstResponder()
+    }
+    
     
 
     override func didReceiveMemoryWarning() {
@@ -176,9 +181,22 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         
         //Foundationオブジェクトで表現されたデータをJSONSerializationでJSONオブジェクト(Data)に変換
         let json = try! JSONSerialization.jsonObject(with: jsondata, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-        //print(json)
+        print(json)
+        
+        //エラー対処アラート
+        if json["error_message"] != nil {
+            let alert = UIAlertController(title: "エラー", message: json["error_message"] as! String, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "リロード", style: .default, handler: { (action) in
+                self.getLatLngForZip(zipCode: zipCode)
+            })
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        
         let resultArray = json ["results"] as! NSArray
-        //print(resultArray)
+        print(resultArray)
         let result = resultArray[0] as! NSDictionary
         //print(result)
         let geometry = result ["geometry"] as! NSDictionary

@@ -14,16 +14,28 @@ class recommendViewController: UIViewController,UITableViewDataSource,UITableVie
     @IBOutlet var recommendTableView : UITableView!
     
     //データを入れる変数
-    var recommendmember : [String] = ["東口","西口"]
+    //出口
+    var recommendmember : [String] = ["東口","東口"]
+    //電車の号車
+    var recommendtrainmember : [String] = ["３号車","５号車"]
+    //時間
+    var recommendtimemember : [String] = ["徒歩５分","徒歩５分"]
 
     
     @IBOutlet var selectedLineNameLabel : UILabel!
     var selectedLineName : String = ""
+    
+    @IBOutlet var selectedStationNameLabel : UILabel!
+    var selectedStationName : String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //路線表示
         selectedLineNameLabel.text = selectedLineName
+        
+        //駅名表示
+        selectedStationNameLabel.text = selectedStationName
         
         //データソースメソッドをこのファイル内で処理
         recommendTableView.dataSource = self
@@ -56,8 +68,11 @@ class recommendViewController: UIViewController,UITableViewDataSource,UITableVie
         
         //表示内容を決める
         cell.recommendExitLabel.text = recommendmember [indexPath.row]
-        //cell.ExitLabel.text = Line[IndexPath.row]
-        //cell.NumberOfTrain.text = Line[IndexPath.row]
+        
+        cell.recommendtrainLabel.text = recommendtrainmember[indexPath.row]
+        
+        cell.recommendtimeLabel.text = recommendtimemember [indexPath.row]
+        
         
         //値がないセルには線を表示しない
         tableView.tableFooterView = UIView()
@@ -65,6 +80,14 @@ class recommendViewController: UIViewController,UITableViewDataSource,UITableVie
         //cellを返す
         return cell
     }
+    
+    //戻るボタン押下時の呼び出しメソッド
+    func goTop() {
+        
+        //チェックイン画面に戻る。
+        self.navigationController?.popViewController(animated: true)
+    }
+
 
 
     

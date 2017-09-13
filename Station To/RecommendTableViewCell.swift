@@ -12,6 +12,10 @@ class RecommendTableViewCell: UITableViewCell {
     
     @IBOutlet var recommendExitLabel : UILabel!
     
+    @IBOutlet var recommendtrainLabel : UILabel!
+    
+    @IBOutlet var recommendtimeLabel : UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

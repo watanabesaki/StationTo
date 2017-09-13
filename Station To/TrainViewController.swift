@@ -15,15 +15,15 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
     
     //選択した駅名変数定義
     @IBOutlet var selectedStationLabel : UILabel!
-    var selectedStation : String = ""
+    var selectedStation : String = "新橋駅"
 
     //データを入れる変数
-    var Linemember : [String] = ["JR山手線","JR京浜東北線"]
+    var Linemember : [String] = ["JR山手線内回り","JR山手線外回り","JR京浜東北線上り","JR京浜東北線下り"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        selectedStationLabel.text = "新橋駅"
+        selectedStationLabel.text = selectedStation
 
         //データソースメソッドをこのファイル内で処理
         LineTableView.dataSource = self
@@ -39,7 +39,7 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
         print(Linemember)
         
         //トップに戻るボタンを作成
-        let leftButton = UIBarButtonItem(title: "戻る", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TrainViewController.goTop))
+        let leftButton = UIBarButtonItem(title: "チェックイン", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TrainViewController.goTop))
         self.navigationItem.leftBarButtonItem = leftButton
         
     }
@@ -89,12 +89,17 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //画面取得
         let trainviewcontroller = segue.destination as! recommendViewController
+        //let trainviewcontroller2 = segue.destination as! recommendViewController
+        
         
         //今選択されているセルの取得
         let selectedIndex = LineTableView.indexPathForSelectedRow!
         
         //値を取得して値渡し
         trainviewcontroller.selectedLineName = Linemember[selectedIndex.row]
+        //駅名の値渡し
+        trainviewcontroller.selectedStationName = selectedStation
+        
     }
     
     //戻るボタン押下時の呼び出しメソッド

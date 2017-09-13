@@ -51,6 +51,9 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet var nameLabel : UILabel!
     @IBOutlet var addressLabel : UILabel!
     
+    @IBOutlet var checkinOKLabel : UILabel!
+    
+    
     //現在地の名前、住所
     @IBOutlet var herenameLabel : UILabel!
     @IBOutlet var hereaddressLabel : UILabel!
@@ -235,6 +238,7 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                 self.nameLabel.text = place.name
                 self.addressLabel.text = place.formattedAddress?.components(separatedBy: ", ")
                     .joined(separator: "\n")
+                self.checkinOKLabel.text = "チェックイン完了"
             } else {
                 self.nameLabel.text = "場所が選択されていません"
                 self.addressLabel.text = ""
