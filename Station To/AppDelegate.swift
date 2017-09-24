@@ -13,6 +13,8 @@ import GoogleMaps
 
 import GooglePlaces
 
+import NCMB
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,13 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        //APIKeyの追加
         
+        NCMB.setApplicationKey(APIKey.ncmbApplicationKey, clientKey: APIKey.ncmbClientKey)
+        
+        GMSServices.provideAPIKey(APIKey.mapKey)
+        GMSPlacesClient.provideAPIKey(APIKey.placesKey)
 
         
+        
+        /*
+        //APIKeyの追加
         GMSServices.provideAPIKey("AIzaSyAThYP2DJpWwL7rbDxo4atYYr9tmMPCkwg")
         
         GMSPlacesClient.provideAPIKey("AIzaSyAThYP2DJpWwL7rbDxo4atYYr9tmMPCkwg")
+        */
         
         //初期TABBAR設定
         let tabvc = self.window!.rootViewController as? UITabBarController

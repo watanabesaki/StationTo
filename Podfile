@@ -13,5 +13,5 @@ target 'Station To' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'SWXMLHash'
-
+  pod 'NCMB', :git => 'https://github.com/NIFTYCloud-mbaas/ncmb_ios.git'
 end

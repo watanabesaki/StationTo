@@ -12,17 +12,14 @@ import UIKit
 import GoogleMaps
 
 import GooglePlaces
+import GooglePlacePicker
 
-import Alamofire
-import SwiftyJSON
+import NCMB
 
-import SWXMLHash
-
-class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResultsViewControllerDelegate {
+class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResultsViewControllerDelegate,GMSMapViewDelegate {
     
     
-    @IBOutlet var mapview: UIView!
-    
+    /*
     //緯度軽度
     let latitude: CLLocationDegrees = 35.689407
     let longitude: CLLocationDegrees = 139.700306
@@ -49,7 +46,23 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
     
     //路線変数の定義
     var line : [String] = []
+    */
     
+    let zoomRate: Float = 16.0
+    
+    var locationManager: CLLocationManager!
+    
+    var lastLocation: CLLocationCoordinate2D?
+    
+    var searchedLocation: CLLocationCoordinate2D!
+    
+    var placesClient: GMSPlacesClient!
+    
+    //UIViewではなくGMSMapVIew
+    @IBOutlet var mapView: GMSMapView!
+
+    
+    /*
     //apikeyを持ってくる
     func getKeys(){
         var keys: NSDictionary
@@ -59,7 +72,7 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
             print(apikey)
         }
     }
-    
+    */
     
     
     
@@ -71,9 +84,10 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
     
     
     
-    
+    /*
     //表示されるときにマップを表示
     override func loadView() {
+        /*
         //地図タイトル
         navigationItem.title = "Map"
         
@@ -97,13 +111,26 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         
         //ビュー コントローラのビューに GMSMapView オブジェクトを設定
         view = mapView
+         */
     }
+   */
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-                
+        mapView?.delegate = self
+        
+        setUpSearchController()
+        
+        //現在地
+        placesClient = GMSPlacesClient.shared()
+        
+        //前回の現在地を表示
+        loadLastLocation()
+        //現在地取得
+        loadCurrentLocation()
+        
+        /*
         //APIkeyの読み込み
         getKeys()
         //緯度経度の取得
@@ -133,13 +160,19 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         // Adjust the view placement down.
         self.extendedLayoutIncludesOpaqueBars = true
         self.edgesForExtendedLayout = .top
+         */
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadLocations()
+    }
+
+    /*
     override func viewDidAppear(_ animated: Bool) {
         searchController?.searchBar.becomeFirstResponder()
     }
-    
+    */
     
 
     override func didReceiveMemoryWarning() {
@@ -147,28 +180,182 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         // Dispose of any resources that can be recreated.
     }
     
-    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
-        //searchController?.isActive = false
-        // Do something with the selected place.
-        print("Place name: \(place.name)")
-        print("Place address: \(String(describing: place.formattedAddress))")
-        print("Place attributions: \(String(describing: place.attributions))")
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let stationViewController = segue.destination as! StationViewController
+        stationViewController.location = searchedLocation
     }
     
+
+    
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
+        
+        searchController?.isActive = false
+        // Do something with the selected place.
+        
+        searchedLocation = place.coordinate
+        
+        //場所検索後、地図表示、マーカー表示
+        self.mapView.animate(toZoom: 16.0)
+        self.mapView.animate(toLocation: place.coordinate)
+        createMarker(position: place.coordinate, name: place.name)
+        
+        }
+    
+    //map
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {
         print(error)
     }
     
+    //map
     func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
+    //map
     func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 
+    // MARK: - MapDelegate
+    func mapView(_ mapView: GMSMapView, didTapMarker marker: GMSMarker) {
+        
+        //マーカーをタップした時のアラート
+        let actionSheet = UIAlertController(title: marker.snippet, message: "この場所を選択しますか？", preferredStyle: .actionSheet)
+        let searchAction = UIAlertAction(title: "最寄り駅を検索", style: .default) { (action) in
+            self.searchedLocation = marker.position
+            self.performSegue(withIdentifier: "ToTrain", sender: nil)
+        }
+        
+        let checkinAction = UIAlertAction(title: "チェックイン", style: .default) { (action) in
+             Place.shared.name = marker.snippet
+             GMSPlacesClient.shared().location = marker.position
+            self.tabBarController?.selectedIndex = 1
+        }
+        
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
+            
+        }
+        actionSheet.addAction(searchAction)
+        actionSheet.addAction(checkinAction)
+        actionSheet.addAction(cancelAction)
+        self.present(actionSheet, animated: true, completion: nil)
+    }
     
+    // MARK: - Private マーカー作成関数
+    func createMarker(position: CLLocationCoordinate2D, name: String?) {
+        let marker = GMSMarker()
+        marker.position = position
+        if let name = name {
+            marker.snippet = name
+        }
+        // marker.icon = UIImage(named: "")
+        marker.appearAnimation = GMSMarkerAnimation.pop
+        marker.map = self.mapView
+    }
+    
+    //現在地を取得する
+    func loadCurrentLocation() {
+        
+        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+            if let error = error {
+                print(error.code)
+                switch error.code {
+                case -11:
+                    self.locationManager = CLLocationManager()
+                    self.locationManager.requestAlwaysAuthorization()
+                default :
+                    print(error.localizedDescription)
+                    break
+                }
+                return
+            } else {
+                if let placeLikelihoodList = placeLikelihoodList {
+                    
+                    let place = placeLikelihoodList.likelihoods.first?.place
+                    if let place = place {
+                        // print(place.name)
+                        // print(place.formattedAddress!.components(separatedBy: ", ").joined(separator: "\n"))
+                        
+                        self.createMarker(position: place.coordinate, name: place.name)
+                        //UDに保存
+                        self.saveLastLocation(location: place.coordinate)
+                    }
+                }
+            }
+        })
+    }
+    
+    //前回の保存してある現在地を取得
+    func loadLastLocation() {
+        if let lastLocationInfo = UserDefaults.standard.dictionary(forKey: "lastLocation") {
+            let latitude = lastLocationInfo["latitude"] as! CLLocationDegrees
+            let longitude = lastLocationInfo["longitude"] as! CLLocationDegrees
+            lastLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            
+            if let lastLocation = lastLocation {
+                self.mapView.animate(toZoom: zoomRate)
+                self.mapView.animate(toLocation: lastLocation)
+            }
+        }
+    }
+    
+    //現在地を保存
+    func saveLastLocation(location: CLLocationCoordinate2D) {
+        
+        let lastLocationInfo = ["latitude": Double(location.latitude),
+                                "longitude": Double(location.longitude)]
+        
+        let ud = UserDefaults.standard
+        ud.set(lastLocationInfo, forKey: "lastLocation")
+        ud.synchronize()
+    }
+    
+    func loadLocations() {
+        
+        self.mapView?.clear()
+        
+        let query = NCMBQuery(className: "Place")
+        query?.findObjectsInBackground({ (result, error) in
+            if error != nil {
+                print("error")
+            } else {
+                let places = result as! [NCMBObject]
+                for place in places {
+                    let longitude = place.object(forKey: "longitude") as! Double
+                    let latitude = place.object(forKey: "latitude") as! Double
+                    let name = place.object(forKey: "name") as! String
+                    let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                    self.createMarker(position: location, name: name)
+                }
+            }
+        })
+    }
+    
+    func setUpSearchController() {
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
+        
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        
+        searchController?.searchBar.sizeToFit()
+        navigationItem.titleView = searchController?.searchBar
+        
+        definesPresentationContext = true
+        searchController?.hidesNavigationBarDuringPresentation = false
+    }
+    
+}
 
+extension Error {
+    var code: Int { return (self as NSError).code }
+    var domain: String { return (self as NSError).domain }
+}
+
+    
+    /*
     //ジオコーディングで住所から緯度軽度を取得
     func getLatLngForZip(zipCode: String) {
         
@@ -249,7 +436,7 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
             
             
             //CSVファイルの読み込み
-            self.loadCSV(filename: "station20170403free")
+            //self.loadCSV(filename: "station20170403free")
             
             //「駅」という文字列を削除
             if let range = self.closerstation.range(of: "駅") {
@@ -258,52 +445,10 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
             }
 
             //stationcode取得
-            self.stationcode(station_name: self.closerstation)
+            //self.Stationcode(station_name: self.closerstation)
             
         }
 
-
-        /*
-        let url:String = "\(StationUrl)&x=\(jsonlatitudeString)&y=\(jsonlongitudeString)"
-        Alamofire.request(url, method: .get, encoding: JSONEncoding.default).responseJSON{ response in
-            
-            switch response.result {
-            case .success:
-                let json:JSON = JSON(response.result.value ?? kill)
-                print(json)
-                print(json["title"])
-                print(json["description"]["text"])
-                //self.showWeatherAlert(title: json["title"].stringValue,message: json["description"]["text"].stringValue)
-            case .failure(let error):
-                print(error)
-            }
-        }*/
-
-    }
-    
-    /*
-    func getcloserstation(){
-    
-        let jsonlatitudeString : String = "\(String(describing: jsonlatitude))"
-        let jsonlongitudeString : String = "\(String(describing: jsonlongitude))"
-        print(jsonlatitudeString)
-        print(jsonlongitudeString)
-        print(jsonlatitude)
-        print(jsonlongitude)
-        print(StationUrl)
-        
-        //string型をURL型を変える。URL(string 小文字。
-        let url = URL(string: "\(StationUrl)&x=\(jsonlatitudeString)&y=\(jsonlongitudeString)")
-        print(url)
-        //URLを叩いたデータを持ってきてデータ型をjsondataに入れる
-        let jsondata = try! Data(contentsOf: url!)
-        //jsondataをswiftで扱えるdictionary型に変更
-        let json = try! JSONSerialization.jsonObject(with: jsondata, options: JSONSerialization.ReadingOptions.mutableContainers)
-        print(json)
-    
-    }
-   */
-    
     
     //CSVファイルの読み込みメソッド。引数にファイル名、返り値にString型の配列。
     func loadCSV(filename:String)->[String]{
@@ -374,13 +519,14 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
     
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //次の画面を取得
         let trainviewcontroller = segue.destination as! TrainViewController
         //次の画面の変数にこの画面の変数を入れている
         trainviewcontroller.Linemember = line
         
     }
-    
+    */
 
-}
+
+
