@@ -222,15 +222,15 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
     func mapView(_ mapView: GMSMapView, didTapMarker marker: GMSMarker) {
         
         //マーカーをタップした時のアラート
-        let actionSheet = UIAlertController(title: marker.snippet, message: "この場所を選択しますか？", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: marker.snippet, message: "選択してください", preferredStyle: .actionSheet)
         let searchAction = UIAlertAction(title: "最寄り駅を検索", style: .default) { (action) in
             self.searchedLocation = marker.position
-            self.performSegue(withIdentifier: "ToTrain", sender: nil)
+            self.performSegue(withIdentifier: "ToStation", sender: nil)
         }
         
         let checkinAction = UIAlertAction(title: "チェックイン", style: .default) { (action) in
              Place.shared.name = marker.snippet
-             GMSPlacesClient.shared().location = marker.position
+             Place.shared.location = marker.position
             self.tabBarController?.selectedIndex = 1
         }
         
@@ -430,11 +430,6 @@ extension Error {
             self.closerstation = (xml["result"]["station"][0]["name"].element?.text)
             print(self.closerstation)
             
-            //マーカー表示
-            
-
-            
-            
             //CSVファイルの読み込み
             //self.loadCSV(filename: "station20170403free")
             
@@ -449,39 +444,6 @@ extension Error {
             
         }
 
-    
-    //CSVファイルの読み込みメソッド。引数にファイル名、返り値にString型の配列。
-    func loadCSV(filename:String)->[String]{
-        //CSVファイルを格納するための配列を作成
-        var csvArray : [String] = []
-        
-        //CSVファイルの読み込み
-        let csvBundle = Bundle.main.path(forResource: filename, ofType: "csv")
-        
-        do {
-            //csvBundleのパスを読み込み、UTF8に文字コード変換して、NSStringに格納
-            let csvData = try String(contentsOfFile: csvBundle!,
-                                     encoding: String.Encoding.utf8)
-            //改行コードが"\r"で行なわれている場合は"\n"に変更する
-            //let lineChange = csvData.replacingOccurrences(of: "\r", with: "\n")
-            //"\n"の改行コードで区切って、配列csvArrayに格納する
-            //csvArray = lineChange.components(separatedBy: "\n")
-            
-            csvArray = csvData.components(separatedBy:"\n")
-            
-        }
-        catch {
-            print("CSVファイル読み込みエラー")
-        }
-        print("CSVファイル読み込み完了")
-        return csvArray
-        
-
-        // ファイル名がquizmondai.scvファイルの場合は以下のように形で呼ぶ
-        // let resultArray:[String] = loadCSV("quizmondai")
-
-    }
-    
     
     //駅から路線コード取得、路線一覧取得
     func stationcode (station_name:String){
@@ -519,14 +481,6 @@ extension Error {
     
     }
 
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //次の画面を取得
-        let trainviewcontroller = segue.destination as! TrainViewController
-        //次の画面の変数にこの画面の変数を入れている
-        trainviewcontroller.Linemember = line
-        
-    }
-    */
 
 
-
+*/

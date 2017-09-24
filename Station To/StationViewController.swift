@@ -19,11 +19,14 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
     //TableViewの宣言
     @IBOutlet var StationTableView : UITableView!
     
-    //駅配列
-    var stations = [Station]()
+    //場所名表示
+    @IBOutlet var selectedplaceLabel : UILabel?
 
     
+    //駅配列
+    var stations = [Station]()
     var location: CLLocationCoordinate2D!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +37,11 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
         let nib = UINib(nibName: "StationTableViewCell", bundle: Bundle.main)
         StationTableView.register(nib, forCellReuseIdentifier: "StationCell")
         
+        //値がないセルには線を表示しない
         StationTableView.tableFooterView = UIView()
+        
+        selectedplaceLabel?.text = Place.shared.name
+        
         //最寄り駅検索
         loadNearByStations()
         
@@ -64,6 +71,9 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "StationCell") as! StationTableViewCell
         cell.StationLabel.text = stations[indexPath.row].name
         cell.TraveltimeLabel.text = stations[indexPath.row].traveltime
+        
+        
+        
         return cell
     }
     //セルを選択した時
@@ -91,7 +101,7 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
                 if let value = response.result.value {
                     let json = JSON(value)
                     for stationInfo in json.arrayValue {
-                        var station = stations(name: stationInfo["name"].string!)
+                        var station = Station(name: stationInfo["name"].string!)
                         station.traveltime = stationInfo["traveltime"].string!
                         self.stations.append(station)
                     }
@@ -110,7 +120,7 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
                             station.traveltime = stationInfo["traveltime"].string!
                             self.stations.append(station)
                         }
-                        self.stationsTableView.reloadData()
+                        self.StationTableView.reloadData()
                     }
                 }
             }

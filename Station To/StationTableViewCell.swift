@@ -13,11 +13,14 @@ class StationTableViewCell: UITableViewCell {
     //駅名、時間の変数定義
     @IBOutlet var StationLabel : UILabel!
     @IBOutlet var TraveltimeLabel : UILabel!
-
-
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        StationLabel.adjustsFontSizeToFitWidth = true
+        TraveltimeLabel.adjustsFontSizeToFitWidth = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
