@@ -38,6 +38,9 @@
 		D4F17B611F67B91600EC1489 /* GDHighwayGoJA-Rev112b2-OTF in Resources */ = {isa = PBXBuildFile; fileRef = D4F67B7D1F5AF140004A245D /* GDHighwayGoJA-Rev112b2-OTF */; };
 		D4F17B651F67BDFC00EC1489 /* station20170403free.csv in Resources */ = {isa = PBXBuildFile; fileRef = D4F17B641F67BDFB00EC1489 /* station20170403free.csv */; };
 		D4F17B661F67BF1C00EC1489 /* TrainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42C9DBF1F593434006DF703 /* TrainTableViewCell.xib */; };
+		D4F1AA791F791AC400D52BAE /* MypageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F1AA771F791AC400D52BAE /* MypageTableViewCell.swift */; };
+		D4F1AA7A1F791AC400D52BAE /* MypageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F1AA781F791AC400D52BAE /* MypageTableViewCell.xib */; };
+		D4F1AA7C1F791EEC00D52BAE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F1AA7B1F791EEC00D52BAE /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +78,9 @@
 		D4F17B5D1F67712B00EC1489 /* RecommendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendTableViewCell.swift; sourceTree = "<group>"; };
 		D4F17B5E1F67712B00EC1489 /* RecommendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendTableViewCell.xib; sourceTree = "<group>"; };
 		D4F17B641F67BDFB00EC1489 /* station20170403free.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = station20170403free.csv; sourceTree = "<group>"; };
+		D4F1AA771F791AC400D52BAE /* MypageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MypageTableViewCell.swift; sourceTree = "<group>"; };
+		D4F1AA781F791AC400D52BAE /* MypageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MypageTableViewCell.xib; sourceTree = "<group>"; };
+		D4F1AA7B1F791EEC00D52BAE /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D4F67B7D1F5AF140004A245D /* GDHighwayGoJA-Rev112b2-OTF */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "GDHighwayGoJA-Rev112b2-OTF"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +136,9 @@
 			isa = PBXGroup;
 			children = (
 				D4F061481F57E060008DD89B /* MypageViewController.swift */,
+				D4F1AA771F791AC400D52BAE /* MypageTableViewCell.swift */,
+				D4F1AA781F791AC400D52BAE /* MypageTableViewCell.xib */,
+				D4F1AA7B1F791EEC00D52BAE /* DetailViewController.swift */,
 			);
 			name = mypage;
 			sourceTree = "<group>";
@@ -194,6 +203,7 @@
 				D49E9AF11F46715000781F71 /* Keys.plist */,
 				D47B53A41F769D7C00F40A6C /* APIKey.swift */,
 				D4B346A31F3EA10400924C3D /* Assets.xcassets */,
+				D4F17B641F67BDFB00EC1489 /* station20170403free.csv */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -211,7 +221,6 @@
 		D4EDD4A21F590A61001B6B0C /* images */ = {
 			isa = PBXGroup;
 			children = (
-				D4F17B641F67BDFB00EC1489 /* station20170403free.csv */,
 				D4EDD4A51F590A94001B6B0C /* icons_mypage@2x.png */,
 				D4EDD4A31F590A86001B6B0C /* icons8_検索@2x.png */,
 				D4F102CF1F52BE59008FC4AC /* train.png */,
@@ -283,6 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F1AA7A1F791AC400D52BAE /* MypageTableViewCell.xib in Resources */,
 				D4F17B661F67BF1C00EC1489 /* TrainTableViewCell.xib in Resources */,
 				D4F17B611F67B91600EC1489 /* GDHighwayGoJA-Rev112b2-OTF in Resources */,
 				D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */,
@@ -332,6 +342,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Station To/Pods-Station To-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/NCMB/NCMB.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -339,6 +350,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NCMB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -373,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D42C9DB91F593044006DF703 /* recommendViewController.swift in Sources */,
+				D4F1AA7C1F791EEC00D52BAE /* DetailViewController.swift in Sources */,
 				D4EBE4491F77F5B900EDD7B3 /* place.swift in Sources */,
 				D4B3469F1F3EA10400924C3D /* ViewController.swift in Sources */,
 				D4EBE4421F77B54E00EDD7B3 /* StationTableViewCell.swift in Sources */,
@@ -382,6 +395,7 @@
 				D47B53A51F769D7C00F40A6C /* APIKey.swift in Sources */,
 				D4EBE43E1F77ADA200EDD7B3 /* StationViewController.swift in Sources */,
 				D42C9DC01F593434006DF703 /* TrainTableViewCell.swift in Sources */,
+				D4F1AA791F791AC400D52BAE /* MypageTableViewCell.swift in Sources */,
 				D4EBE4471F77F59700EDD7B3 /* station.swift in Sources */,
 				D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */,
 				D4F0614D1F57E0A3008DD89B /* CheckinViewController.swift in Sources */,

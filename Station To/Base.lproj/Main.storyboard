@@ -109,23 +109,6 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9y-Rk-W7i">
-                                <rect key="frame" x="89" y="544" width="196" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="位置情報取得"/>
-                                <connections>
-                                    <action selector="getCurrentPlace:" destination="7SZ-qI-od3" eventType="touchUpInside" id="Bl3-O2-V1h"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4W-Ax-Djx">
-                                <rect key="frame" x="0.0" y="572" width="212" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcV-eb-vqh">
                                 <rect key="frame" x="0.0" y="72" width="375" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -155,13 +138,6 @@
                                 <rect key="frame" x="126" y="38" width="123" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihp-tn-t6p">
-                                <rect key="frame" x="67" y="589" width="241" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -228,23 +204,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcZ-SS-l72">
-                                <rect key="frame" x="122" y="445" width="141" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="チェックイン" image="icons_map.png" selectedImage="icons_map.png" id="B8D-5H-YvY"/>
                     <connections>
                         <outlet property="addressLabel" destination="4R1-Fy-Cmb" id="y06-Iz-Fn8"/>
-                        <outlet property="checkinOKLabel" destination="NcZ-SS-l72" id="8KR-Lj-V0u"/>
                         <outlet property="exitInput" destination="9Zv-AU-eiC" id="q6S-A1-qFt"/>
-                        <outlet property="hereaddressLabel" destination="Ihp-tn-t6p" id="KfG-UB-fkt"/>
-                        <outlet property="herenameLabel" destination="o4W-Ax-Djx" id="eyi-48-Bcv"/>
                         <outlet property="lineInput" destination="Xz4-km-hW9" id="7u4-xu-9NS"/>
                         <outlet property="nameLabel" destination="C8E-eJ-I9U" id="PUg-jd-5TQ"/>
                         <outlet property="numberOfLineInput" destination="2MA-lc-Efx" id="90X-6p-cp9"/>
@@ -268,6 +234,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="チェックイン履歴がありません" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuS-Iy-Kdg">
+                                <rect key="frame" x="50" y="182" width="274" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viK-YF-4cR">
                                 <rect key="frame" x="0.0" y="114" width="375" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -284,13 +257,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="チェックイン履歴がありません" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuS-Iy-Kdg">
-                                <rect key="frame" x="50" y="182" width="274" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="マイページ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xs-fh-gcL">
                                 <rect key="frame" x="134" y="38" width="107" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -305,14 +271,55 @@
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="チェックイン履歴"/>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g29-jb-LbL">
+                                <rect key="frame" x="0.0" y="114" width="375" height="504"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="historyCell" selectionStyle="default" indentationWidth="10" id="tNo-aT-6hC">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tNo-aT-6hC" id="OU5-X7-dx2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="マイページ" id="C2J-hS-LXU"/>
+                    <connections>
+                        <outlet property="historyLabel" destination="nuS-Iy-Kdg" id="isu-rT-aMu"/>
+                        <outlet property="historyTableView" destination="g29-jb-LbL" id="phw-Kw-5BV"/>
+                        <segue destination="pFZ-Kx-jOP" kind="push" identifier="toDetail" id="fl1-Ne-Biu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7UQ-dy-NOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3223.1999999999998" y="1342.5787106446778"/>
+        </scene>
+        <!--詳細-->
+        <scene sceneID="1KJ-V9-kfJ">
+            <objects>
+                <viewController id="pFZ-Kx-jOP" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RJA-8f-Zsp"/>
+                        <viewControllerLayoutGuide type="bottom" id="UQy-hQ-9SJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kKZ-Ou-afH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="詳細" id="49Z-0X-jyj">
+                        <barButtonItem key="backBarButtonItem" title="マイページ" id="WdM-iL-w8O"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="76l-oK-4Cv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3994" y="1343"/>
         </scene>
         <!--路線選択-->
         <scene sceneID="BeX-dX-Wvg">
@@ -377,7 +384,7 @@
             </objects>
             <point key="canvasLocation" x="4837.6000000000004" y="-119.1904047976012"/>
         </scene>
-        <!--おすすめ一覧-->
+        <!--ルート一覧-->
         <scene sceneID="UGK-0d-pTk">
             <objects>
                 <viewController id="Dqo-hg-6HE" customClass="recommendViewController" customModule="Station_To" customModuleProvider="target" sceneMemberID="viewController">
@@ -437,8 +444,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="おすすめ一覧" id="GDa-9c-GUf">
-                        <barButtonItem key="backBarButtonItem" title="戻る" id="s2k-1P-FeP"/>
+                    <navigationItem key="navigationItem" title="ルート一覧" id="GDa-9c-GUf">
+                        <barButtonItem key="backBarButtonItem" title="戻る" id="Zb7-Lm-CZQ"/>
                     </navigationItem>
                     <connections>
                         <outlet property="recommendTableView" destination="3a8-Tn-7yO" id="Wdv-8I-3C3"/>
@@ -557,7 +564,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5JB-nl-Ijm" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="検索" image="icons8_検索.png" selectedImage="icons8_検索.png" id="oD6-Sh-fso"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xOY-Vz-2jb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xOY-Vz-2jb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

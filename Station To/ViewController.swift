@@ -164,9 +164,11 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         
     }
     
+    /*
     override func viewWillAppear(_ animated: Bool) {
         loadLocations()
     }
+    */
 
     /*
     override func viewDidAppear(_ animated: Bool) {
@@ -312,6 +314,7 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         ud.synchronize()
     }
     
+    //データの取得
     func loadLocations() {
         
         self.mapView?.clear()
@@ -322,6 +325,7 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
                 print("error")
             } else {
                 let places = result as! [NCMBObject]
+                print(places)
                 for place in places {
                     let longitude = place.object(forKey: "longitude") as! Double
                     let latitude = place.object(forKey: "latitude") as! Double

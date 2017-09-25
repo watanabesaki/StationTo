@@ -11,8 +11,16 @@ import UIKit
 import GooglePlaces
 
 import GooglePlacePicker
+import NCMB
+import SVProgressHUD
 
 class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    
+    var locationManager: CLLocationManager!
+    
+    //googleplace現在地の取得
+    var placesClient: GMSPlacesClient!
+
     
     //駅名入力
     @IBOutlet var stationInput : UITextField!
@@ -41,28 +49,17 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var pickerview3 : UIPickerView = UIPickerView()
     var pickerview4 : UIPickerView = UIPickerView()
     
-    
-    
-    
-    //googleplace現在地の取得
-    var placesClient = GMSPlacesClient()
-    
     //チェックインした場所の名前、住所
     @IBOutlet var nameLabel : UILabel!
     @IBOutlet var addressLabel : UILabel!
-    
-    @IBOutlet var checkinOKLabel : UILabel!
-    
-    
-    //現在地の名前、住所
-    @IBOutlet var herenameLabel : UILabel!
-    @IBOutlet var hereaddressLabel : UILabel!
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         placesClient = GMSPlacesClient.shared()
+        
+        //現在地取得
+        getCurrentPlace()
         
         //この画面で有効にする
         pickerview1.delegate = self
@@ -112,10 +109,6 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         self.timeInput.inputView = pickerview4
         self.timeInput.inputAccessoryView = toolbar
         pickerview4.tag = 4
-        
-        
-        
-        
         
     }
     
@@ -191,35 +184,54 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     
     //現在のプレイスを取得する 端末の現在地にあるローカル ビジネスなどのプレイスを検出するには、GMSPlacesClient currentPlaceWithCallback: を呼び出す
-    @IBAction func getCurrentPlace(_ sender: UIButton) {
+     func getCurrentPlace(){
         
         placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
             if let error = error {
                 print("Pick Place error: \(error.localizedDescription)")
                 return
+                switch error.code {
+                case -11:
+                    self.locationManager = CLLocationManager()
+                    self.locationManager.requestAlwaysAuthorization()
+                default :
+                    print(error.localizedDescription)
+                    break
+                }
             }
-            
-            self.herenameLabel.text = "No current place"
-            self.hereaddressLabel.text = ""
             
             if let placeLikelihoodList = placeLikelihoodList {
                 let place = placeLikelihoodList.likelihoods.first?.place
                 if let place = place {
-                    self.herenameLabel.text = place.name
-                    self.hereaddressLabel.text = place.formattedAddress?.components(separatedBy: ",")
-                        .joined(separator: "\n")
+                    //現在地の場所情報
                     print(place.name)
                     print(place.formattedAddress?.components(separatedBy: ",").joined(separator: "\n") ?? String())
+                    print(place.coordinate.longitude)
+                    print(place.coordinate.latitude)
+                    //現在地情報の受け渡し
+                    Place.shared.name = place.name
+                    Place.shared.location?.longitude =  (place.coordinate.longitude)
+                    Place.shared.location?.latitude =  (place.coordinate.latitude)
+                    print(Place.shared.location?.latitude)
+                    
                 }
             }
         })
     }
     
-    //Place Picker を追加する
+    //Place Picker を追加する チェックインボタン
     @IBAction func pickPlace(_ sender: UIButton) {
         
-        //現在地の緯度経度
-        let center = CLLocationCoordinate2D(latitude: 35.6709056, longitude: 139.7577372)
+        //入力した内容を保存
+        Place.shared.station = stationInput.text
+        Place.shared.line = lineInput.text
+        Place.shared.exit = exitInput.text
+        Place.shared.trainNumber = numberOfLineInput.text
+        
+        //現在地周辺地図表示
+        //let center = CLLocationCoordinate2D(latitude: (Place.shared.location?.latitude)!, longitude: (Place.shared.location?.longitude)!)
+        
+        let center = CLLocationCoordinate2D(latitude: 35, longitude: 139)
         
         let northEast = CLLocationCoordinate2D(latitude: center.latitude + 0.001, longitude: center.longitude + 0.001)
         let southWest = CLLocationCoordinate2D(latitude: center.latitude - 0.001, longitude: center.longitude - 0.001)
@@ -229,22 +241,63 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         placePicker.pickPlace(callback: {(place, error) -> Void in
             if let error = error {
-                print("Pick Place error: \(error.localizedDescription)")
+                print("現在地周辺地図表示\(error.localizedDescription)")
                 return
             }
             
             //現在地候補から選ぶと名前、住所の表示
             if let place = place {
-                self.nameLabel.text = place.name
-                self.addressLabel.text = place.formattedAddress?.components(separatedBy: ", ")
-                    .joined(separator: "\n")
-                self.checkinOKLabel.text = "チェックイン完了"
-            } else {
-                self.nameLabel.text = "場所が選択されていません"
-                self.addressLabel.text = ""
+                //NCMBに書き込み保存
+                let object = NCMBObject(className: "Place")
+                object?.setObject(Place.shared.name, forKey: "name")
+                object?.setObject(Place.shared.station, forKey: "station")
+                object?.setObject(Place.shared.line, forKey: "line")
+                object?.setObject(Place.shared.exit, forKey: "exit")
+                //object?.setObject(Place.shared.direction, forKey: "direction")
+                object?.setObject(Place.shared.trainNumber, forKey: "trainNumber")
+                object?.setObject(Place.shared.location?.longitude, forKey: "longitude")
+                object?.setObject(Place.shared.location?.latitude, forKey: "latitude")
+                object?.saveInBackground({ (error) in
+                    if error != nil {
+                        //保存に失敗
+                        SVProgressHUD.showError(withStatus: error!.localizedDescription)
+                        self.nameLabel.text = "場所が選択されていません"
+                        self.addressLabel.text = ""
+                    } else {
+                        //保存に成功
+                        SVProgressHUD.showSuccess(withStatus: "チェックイン完了")
+                        self.nameLabel.text = place.name
+                        self.addressLabel.text = place.formattedAddress?.components(separatedBy: ", ")
+                            .joined(separator: "\n")
+                        
+                        Place.shared.name = nil
+                        Place.shared.station = nil
+                        Place.shared.line = nil
+                        Place.shared.exit = nil
+                        Place.shared.direction = nil
+                        Place.shared.trainNumber = nil
+                        Place.shared.location = nil
+                        
+                        //指定した秒数後に処理を実行
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(5)) {
+                            SVProgressHUD.dismiss()
+                        }
+                        
+                    }
+                })
+            
             }
-        })
-    }
+        }
+   )}
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

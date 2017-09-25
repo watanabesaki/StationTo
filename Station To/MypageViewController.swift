@@ -8,12 +8,38 @@
 
 import UIKit
 
-class MypageViewController: UIViewController {
+import NCMB
+
+class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+    
+    @IBOutlet var historyLabel : UILabel!
+    
+    var namemember : [String] = []
+    var datemember : [String] = []
+    var places : [NCMBObject] = []
+    
+    //TableViewの宣言
+    @IBOutlet var historyTableView : UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        //履歴表示
+        showhistory()
+        
+        //データソースメソッドをこのファイル内で処理
+        historyTableView.dataSource = self
+        //デリゲートメソッドをselfに任せる
+        historyTableView.delegate = self
+        
+        //値がないセルには線を表示しない
+        historyTableView.tableFooterView = UIView()
+        
+        //カスタムセルの登録
+        //xibファイルの取得
+        let nib = UINib(nibName: "MypageTableViewCell", bundle: Bundle.main)
+        //取得したファイルを登録
+        historyTableView.register(nib, forCellReuseIdentifier: "historyCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +47,64 @@ class MypageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    //チェックイン履歴の表示NCMBデータの取得
+    func showhistory(){
+        let query = NCMBQuery(className: "Place")
+        query?.findObjectsInBackground({ (result, error) in
+            if error != nil {
+                print("マイページ履歴error")
+            } else {
+                self.places = result as! [NCMBObject]
+                print(self.places.count)
+                
+                for place in self.places {
+                    print(place.object(forKey: "name") as! String)
+                    print(place.object(forKey: "createDate") as! String)
+                    let name = place.object(forKey: "name") as! String
+                    let date = place.object(forKey: "createDate") as! String
+                    
+                    self.namemember.append(name)
+                    self.datemember.append(date)
+                    
+                    print(self.namemember)
+                    print(self.datemember)
+                    
+                }
+            }
+        })
     }
-    */
 
+    //tableviewに表示するデータの個数
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.places.count
+    }
+    
+    //tableviewに表示するデータの内容
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //idをつけたcellの取得
+        let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell") as! MypageTableViewCell
+        
+        //表示内容を決める
+        cell.historyplaceLabel.text = namemember[indexPath.row]
+        cell.historytimeLabel.text = datemember[indexPath.row]
+        
+        //cellを返す
+        return cell
+    }
+    
+    //セルが押された時のアクション
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //画面遷移
+        self.performSegue(withIdentifier:"toDetail", sender: nil)
+        
+        //戻った時の選択状態解除
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+
+    
+   
 }

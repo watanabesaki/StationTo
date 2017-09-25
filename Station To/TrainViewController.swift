@@ -126,6 +126,7 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
     }
     */
 
+    //路線検索関数
     func loadLines() {
         //CSVファイルの読み込み
         let allStations = loadCSV(filename: "station20170403free")
@@ -134,17 +135,18 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
             //カンマで区切る
             let splitStationRow = station.components(separatedBy: ",")
             
+            print(splitStationRow.count)
             
             //3回以下なら
             if splitStationRow.count < 3 {
                 print("駅名から駅コード検索失敗")
-                return
+                //return
             } else {
                 //駅名を抽出
-                let stationName = splitStationRow[2]
+                let selectedstation = splitStationRow[2]
                 //選択した駅名と等しい駅名があったら
-                if let stationName = selectedStation {
-                    if stationName.contains(String(stationName.characters.dropLast())) == true {
+                if let selectedStation = selectedStation {
+                    if selectedStation.contains(String(selectedStation.characters.dropLast())) == true {
                         // 駅コード抽出、配列に追加
                         let stationCode = splitStationRow[1]
                         stationCodes.append(stationCode)
@@ -152,9 +154,10 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
                 } else {
                     //
                     if let station = Place.shared.station {
-                        if stationName.contains(String(station.characters.dropLast())) == true {
+                        if selectedStation.contains(String(station.characters.dropLast())) == true {
                             // 駅コード抽出、配列に追加
                             let stationCode = splitStationRow[1]
+                            print(stationCode)
                             stationCodes.append(stationCode)
                         }
                     }
