@@ -77,9 +77,10 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     for places in places {
                         let name = places.object(forKey: "name") as! String
                         let date = places.object(forKey: "createDate") as! String
+                        let datenew = date.substring(to: date.index(date.startIndex, offsetBy: 10))
                         
                         self.namemember.append(name)
-                        self.datemember.append(date)
+                        self.datemember.append(datenew)
                         
                     }
                     print(self.namemember)
