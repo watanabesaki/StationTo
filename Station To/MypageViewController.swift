@@ -40,6 +40,7 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
         let nib = UINib(nibName: "MypageTableViewCell", bundle: Bundle.main)
         //取得したファイルを登録
         historyTableView.register(nib, forCellReuseIdentifier: "historyCell")
+        historyTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,19 +59,24 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 self.places = result as! [NCMBObject]
                 print(self.places.count)
                 
-                for place in self.places {
-                    print(place.object(forKey: "name") as! String)
-                    print(place.object(forKey: "createDate") as! String)
-                    let name = place.object(forKey: "name") as! String
-                    let date = place.object(forKey: "createDate") as! String
-                    
-                    self.namemember.append(name)
-                    self.datemember.append(date)
-                    
+                if self.places != nil{
+                    print("チェックイン履歴がありません")
+                    self.historyLabel.text = "チェックイン履歴がありません"
+                }else{
+                    for place in self.places {
+                        let name = place.object(forKey: "name") as! String
+                        let date = place.object(forKey: "createDate") as! String
+                        
+                        self.namemember.append(name)
+                        self.datemember.append(date)
+                        
+                    }
                     print(self.namemember)
                     print(self.datemember)
                     
+                    self.historyTableView.reloadData()
                 }
+                
             }
         })
     }
@@ -87,8 +93,8 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell") as! MypageTableViewCell
         
         //表示内容を決める
-        cell.historyplaceLabel.text = namemember[indexPath.row]
-        cell.historytimeLabel.text = datemember[indexPath.row]
+        cell.historyplaceLabel.text = self.namemember[indexPath.row]
+        cell.historytimeLabel.text = self.datemember[indexPath.row]
         
         //cellを返す
         return cell

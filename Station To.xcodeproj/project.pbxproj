@@ -32,7 +32,6 @@
 		D4F061491F57E060008DD89B /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F061481F57E060008DD89B /* MypageViewController.swift */; };
 		D4F0614D1F57E0A3008DD89B /* CheckinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */; };
 		D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */; };
-		D4F102D01F52BE59008FC4AC /* train.png in Resources */ = {isa = PBXBuildFile; fileRef = D4F102CF1F52BE59008FC4AC /* train.png */; };
 		D4F17B5F1F67712B00EC1489 /* RecommendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F17B5D1F67712B00EC1489 /* RecommendTableViewCell.swift */; };
 		D4F17B601F67712B00EC1489 /* RecommendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F17B5E1F67712B00EC1489 /* RecommendTableViewCell.xib */; };
 		D4F17B611F67B91600EC1489 /* GDHighwayGoJA-Rev112b2-OTF in Resources */ = {isa = PBXBuildFile; fileRef = D4F67B7D1F5AF140004A245D /* GDHighwayGoJA-Rev112b2-OTF */; };
@@ -74,7 +73,6 @@
 		D4F061481F57E060008DD89B /* MypageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinViewController.swift; sourceTree = "<group>"; };
 		D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
-		D4F102CF1F52BE59008FC4AC /* train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = train.png; path = ../../../train.png; sourceTree = "<group>"; };
 		D4F17B5D1F67712B00EC1489 /* RecommendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendTableViewCell.swift; sourceTree = "<group>"; };
 		D4F17B5E1F67712B00EC1489 /* RecommendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendTableViewCell.xib; sourceTree = "<group>"; };
 		D4F17B641F67BDFB00EC1489 /* station20170403free.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = station20170403free.csv; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 			children = (
 				D4EDD4A51F590A94001B6B0C /* icons_mypage@2x.png */,
 				D4EDD4A31F590A86001B6B0C /* icons8_検索@2x.png */,
-				D4F102CF1F52BE59008FC4AC /* train.png */,
 				D4EDD4A01F590A58001B6B0C /* icons_map@2x.png */,
 			);
 			name = images;
@@ -296,7 +293,6 @@
 				D4F17B661F67BF1C00EC1489 /* TrainTableViewCell.xib in Resources */,
 				D4F17B611F67B91600EC1489 /* GDHighwayGoJA-Rev112b2-OTF in Resources */,
 				D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */,
-				D4F102D01F52BE59008FC4AC /* train.png in Resources */,
 				D4EBE4431F77B54E00EDD7B3 /* StationTableViewCell.xib in Resources */,
 				D4EDD4A41F590A86001B6B0C /* icons8_検索@2x.png in Resources */,
 				D4F17B601F67712B00EC1489 /* RecommendTableViewCell.xib in Resources */,

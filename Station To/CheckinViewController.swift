@@ -16,6 +16,10 @@ import SVProgressHUD
 
 class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
+    //検索した場所の名前、緯度経度
+    //var searchname : string!
+    //var searchlocation : CLLocationCoordinate2D?
+    
     var locationManager: CLLocationManager!
     
     //googleplace現在地の取得
@@ -118,7 +122,7 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print(textField.tag)
+        //print(textField.tag)
         return true
     }
     
@@ -130,7 +134,7 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     //PickerViewに表示する行数を返す
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        print(pickerView.tag)
+        //print(pickerView.tag)
         
         if pickerView.tag == 1 {
             return stationInputList.count
@@ -210,9 +214,7 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                     print(place.coordinate.latitude)
                     //現在地情報の受け渡し
                     Place.shared.name = place.name
-                    Place.shared.location?.longitude =  (place.coordinate.longitude)
-                    Place.shared.location?.latitude =  (place.coordinate.latitude)
-                    print(Place.shared.location?.latitude)
+                    Place.shared.location = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
                     
                 }
             }
@@ -229,9 +231,11 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         Place.shared.trainNumber = numberOfLineInput.text
         
         //現在地周辺地図表示
-        //let center = CLLocationCoordinate2D(latitude: (Place.shared.location?.latitude)!, longitude: (Place.shared.location?.longitude)!)
+        print(Place.shared)
+        let location = Place.shared.location!
+        let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         
-        let center = CLLocationCoordinate2D(latitude: 35, longitude: 139)
+        //let center = CLLocationCoordinate2D(latitude: 35, longitude: 139)
         
         let northEast = CLLocationCoordinate2D(latitude: center.latitude + 0.001, longitude: center.longitude + 0.001)
         let southWest = CLLocationCoordinate2D(latitude: center.latitude - 0.001, longitude: center.longitude - 0.001)

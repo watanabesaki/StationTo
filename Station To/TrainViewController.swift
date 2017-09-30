@@ -8,6 +8,8 @@
 
 import UIKit
 
+import CoreLocation
+
 import Alamofire
 import SwiftyJSON
 import SWXMLHash
@@ -21,11 +23,16 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
     @IBOutlet var selectedStationLabel : UILabel!
     var selectedStation : String!
     
+    //駅配列
+    var stations = [Station]()
+    var location: CLLocationCoordinate2D!
+
+    
     //駅コード変数
     var stationCodes = [String]()
 
     //路線データを入れる変数
-    var Linemember : [Line] = []
+    var Linemember = [Line]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,30 +141,30 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
         for station in allStations {
             //カンマで区切る
             let splitStationRow = station.components(separatedBy: ",")
-            
-            print(splitStationRow.count)
-            
+            //print(splitStationRow)
+            //print(splitStationRow.count)
             //3回以下なら
             if splitStationRow.count < 3 {
-                print("駅名から駅コード検索失敗")
+                print("三番目を検索したいので、要素が三個以上必要である。")
                 //return
             } else {
                 //駅名を抽出
-                let selectedstation = splitStationRow[2]
+                let name = splitStationRow[2]
+
                 //選択した駅名と等しい駅名があったら
-                if let selectedStation = selectedStation {
-                    if selectedStation.contains(String(selectedStation.characters.dropLast())) == true {
+                if let selectedstation = selectedStation {
+                    if name.contains(String(selectedstation.characters.dropLast())) == true {
                         // 駅コード抽出、配列に追加
                         let stationCode = splitStationRow[1]
                         stationCodes.append(stationCode)
+                        print(stationCode)
                     }
                 } else {
-                    //
+                    //現在地
                     if let station = Place.shared.station {
-                        if selectedStation.contains(String(station.characters.dropLast())) == true {
+                        if name.contains(String(station.characters.dropLast())) == true {
                             // 駅コード抽出、配列に追加
                             let stationCode = splitStationRow[1]
-                            print(stationCode)
                             stationCodes.append(stationCode)
                         }
                     }
@@ -168,6 +175,7 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
         if let code = stationCodes.first {
             //駅コードから路線検索
             let url = "http://www.ekidata.jp/api/g/\(code).xml"
+            print(url)
             //Alamofire XML形式　SWXMHash
             Alamofire.request(url).response{ response in
                 let xml = SWXMLHash.parse(response.data!)
@@ -176,6 +184,7 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
                     print(stationInfo)
                     let line = Line(stationCode: stationInfo["station_cd"].element!.text, stationName: stationInfo["station_name"].element!.text, lineCode: stationInfo["line_cd"].element!.text, lineName: stationInfo["line_name"].element!.text)
                     self.Linemember.append(line)
+                    print(self.Linemember)
                 }
                 self.LineTableView.reloadData()
             }

@@ -184,8 +184,16 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         let stationViewController = segue.destination as! StationViewController
         stationViewController.location = searchedLocation
+        
+        /*
+        let cheakinViewController = segue.destination as! CheckinViewController
+        cheakinViewController.searchname = Place.shared.name
+        cheakinViewController.searchlocation = Place.shared.coordinate
+        */
+        
     }
     
 

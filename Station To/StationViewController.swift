@@ -27,6 +27,7 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
     var stations = [Station]()
     var location: CLLocationCoordinate2D!
     
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
         //値がないセルには線を表示しない
         StationTableView.tableFooterView = UIView()
         
+        //場所の表示
         selectedplaceLabel?.text = Place.shared.name
         
         //最寄り駅検索
@@ -59,6 +61,7 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
                 let indexPath = StationTableView.indexPathForSelectedRow!
                 let trainViewController = segue.destination as! TrainViewController
                 trainViewController.selectedStation = stations[indexPath.row].name
+                //trainViewController.selectedlongitude = stations[indexPath.row].location?.longitude
             }
         }
     }
@@ -104,6 +107,7 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
                         var station = Station(name: stationInfo["name"].string!)
                         station.traveltime = stationInfo["traveltime"].string!
                         self.stations.append(station)
+                        
                     }
                     self.StationTableView.reloadData()
                     

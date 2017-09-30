@@ -9,6 +9,18 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    
+    @IBOutlet var detaildateLabel : UILabel!
+    @IBOutlet var detailadressLabel : UILabel!
+    @IBOutlet var detailstationLabel : UILabel!
+    @IBOutlet var detailexitLabel : UILabel!
+    @IBOutlet var detailnumberoftrainLabel : UILabel!
+    @IBOutlet var detailtimeLabel : UILabel!
+    
+    @IBOutlet var detailmemoTextView : UITextView!
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
