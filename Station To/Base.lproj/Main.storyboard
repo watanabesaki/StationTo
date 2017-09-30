@@ -264,7 +264,7 @@
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="チェックイン履歴"/>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="81" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g29-jb-LbL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g29-jb-LbL">
                                 <rect key="frame" x="0.0" y="114" width="375" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -278,7 +278,7 @@
                                 </label>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="historyCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="40" id="tNo-aT-6hC">
-                                        <rect key="frame" x="0.0" y="49" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="10" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tNo-aT-6hC" id="OU5-X7-dx2">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
@@ -630,7 +630,7 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="B3M-ku-V5g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="B3M-ku-V5g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -649,7 +649,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5JB-nl-Ijm" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="検索" image="icons8_検索.png" selectedImage="icons8_検索.png" id="oD6-Sh-fso"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xOY-Vz-2jb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xOY-Vz-2jb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
