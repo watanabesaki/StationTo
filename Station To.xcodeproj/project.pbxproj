@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A7FC3F68E93027755869BE8E /* Pods_Station_To.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB8E88D083172820B1E7281 /* Pods_Station_To.framework */; };
+		D40108F91F80D3BB009FF803 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40108F81F80D3BB009FF803 /* SignInViewController.swift */; };
+		D40108FB1F80D3E5009FF803 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40108FA1F80D3E5009FF803 /* SignIn.storyboard */; };
+		D40108FE1F80D6EB009FF803 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40108FD1F80D6EB009FF803 /* SignUpViewController.swift */; };
 		D42C9DB71F591E17006DF703 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C9DB61F591E17006DF703 /* MainTabBarController.swift */; };
 		D42C9DB91F593044006DF703 /* recommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C9DB81F593044006DF703 /* recommendViewController.swift */; };
 		D42C9DC01F593434006DF703 /* TrainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C9DBE1F593434006DF703 /* TrainTableViewCell.swift */; };
@@ -46,6 +49,9 @@
 		0FB8E88D083172820B1E7281 /* Pods_Station_To.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Station_To.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA6B595751EF78D0BE333BD /* Pods-Station To.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Station To.release.xcconfig"; path = "Pods/Target Support Files/Pods-Station To/Pods-Station To.release.xcconfig"; sourceTree = "<group>"; };
 		A1DE131306868F45500C4956 /* Pods-Station To.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Station To.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Station To/Pods-Station To.debug.xcconfig"; sourceTree = "<group>"; };
+		D40108F81F80D3BB009FF803 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		D40108FA1F80D3E5009FF803 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		D40108FD1F80D6EB009FF803 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D42C9DB61F591E17006DF703 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D42C9DB81F593044006DF703 /* recommendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recommendViewController.swift; sourceTree = "<group>"; };
 		D42C9DBE1F593434006DF703 /* TrainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainTableViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +119,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D40108FC1F80D6C2009FF803 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				D40108F81F80D3BB009FF803 /* SignInViewController.swift */,
+				D40108FD1F80D6EB009FF803 /* SignUpViewController.swift */,
+			);
+			name = login;
+			sourceTree = "<group>";
+		};
 		D42C9DBA1F593059006DF703 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				D4B346A01F3EA10400924C3D /* Main.storyboard */,
+				D40108FA1F80D3E5009FF803 /* SignIn.storyboard */,
 				D4B346A51F3EA10400924C3D /* LaunchScreen.storyboard */,
 			);
 			name = view;
@@ -184,6 +200,7 @@
 				D4EBE4441F77E6DA00EDD7B3 /* Source */,
 				D4F67B7D1F5AF140004A245D /* GDHighwayGoJA-Rev112b2-OTF */,
 				D4EDD4A21F590A61001B6B0C /* images */,
+				D40108FC1F80D6C2009FF803 /* login */,
 				D42C9DBD1F5930A2006DF703 /* CheackIn */,
 				D42C9DBA1F593059006DF703 /* Search */,
 				D42C9DBB1F59307D006DF703 /* mypage */,
@@ -290,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4F1AA7A1F791AC400D52BAE /* MypageTableViewCell.xib in Resources */,
+				D40108FB1F80D3E5009FF803 /* SignIn.storyboard in Resources */,
 				D4F17B661F67BF1C00EC1489 /* TrainTableViewCell.xib in Resources */,
 				D4F17B611F67B91600EC1489 /* GDHighwayGoJA-Rev112b2-OTF in Resources */,
 				D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */,
@@ -387,6 +405,7 @@
 				D4EBE4421F77B54E00EDD7B3 /* StationTableViewCell.swift in Sources */,
 				D4B3469D1F3EA10400924C3D /* AppDelegate.swift in Sources */,
 				D4EBE44B1F77F5CF00EDD7B3 /* line.swift in Sources */,
+				D40108FE1F80D6EB009FF803 /* SignUpViewController.swift in Sources */,
 				D42C9DB71F591E17006DF703 /* MainTabBarController.swift in Sources */,
 				D47B53A51F769D7C00F40A6C /* APIKey.swift in Sources */,
 				D4EBE43E1F77ADA200EDD7B3 /* StationViewController.swift in Sources */,
@@ -394,6 +413,7 @@
 				D4F1AA791F791AC400D52BAE /* MypageTableViewCell.swift in Sources */,
 				D4EBE4471F77F59700EDD7B3 /* station.swift in Sources */,
 				D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */,
+				D40108F91F80D3BB009FF803 /* SignInViewController.swift in Sources */,
 				D4F0614D1F57E0A3008DD89B /* CheckinViewController.swift in Sources */,
 				D4F061491F57E060008DD89B /* MypageViewController.swift in Sources */,
 				D4F17B5F1F67712B00EC1489 /* RecommendTableViewCell.swift in Sources */,

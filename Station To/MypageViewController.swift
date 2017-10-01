@@ -18,6 +18,14 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var datemember : [String] = []
     var places = [NCMBObject]()
     
+    //useridの表示
+    @IBOutlet var useridLabel : UILabel?
+    
+    //訪問数、ポイント数
+    @IBOutlet var visitnumberLabel : UILabel!
+    @IBOutlet var pointnumberLabel : UILabel!
+    
+    
     //TableViewの宣言
     @IBOutlet var historyTableView : UITableView!
     
@@ -51,6 +59,12 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.refreshControl.addTarget(self, action: "pullToRefresh", for:.valueChanged)
         self.historyTableView.addSubview(refreshControl)
         //refreshControl = refresh
+        
+        //ユーザの情報を読み込む
+        let userId = NCMBUser.current().userName
+        useridLabel?.text = userId
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,6 +112,8 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     }
                     
                     self.historyTableView.reloadData()
+                    self.visitnumberLabel.text = String(self.namemember.count)
+
                 }else{
                     print("チェックイン履歴がありません")
                     self.historyLabel.text = "チェックイン履歴がありません"
@@ -164,6 +180,68 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
         print("リロード完了")
         
     }
+    
+    
+    @IBAction func showmenu(){
+        let alertContoller = UIAlertController(title: "メニュー", message: "メニューを選択してください", preferredStyle: .actionSheet)
+        //ログアウトボタン
+        let signoutAction = UIAlertAction(title: "ログアウト", style: .default) { (action) in
+            NCMBUser.logOutInBackground({ (error) in
+                if error != nil{
+                    //ログアウトのエラー
+                    print("ログアウトエラー")
+                }else{
+                    //ログインアウト成功
+                    //登録が成功した場合
+                    //スト-リーボードの取得
+                    let storyboard = UIStoryboard(name: "SignIn", bundle: Bundle.main)
+                    let rootviewcontroller = storyboard.instantiateViewController(withIdentifier: "RootnavigationController")
+                    //画面の一番奥の画面に設定する appdeligateのwindowsと同じ意味
+                    UIApplication.shared.keyWindow?.rootViewController = rootviewcontroller
+                    
+                    //ログインアウトしたらuserdefaultに保存
+                    let ud = UserDefaults.standard
+                    ud.set(false, forKey: "isLogin")
+                    ud.synchronize()
+                    
+                }
+            })
+        }
+        //退会ボタン
+        let deleteaction = UIAlertAction(title: "退会", style: .default) { (action) in
+            //現在ログインしているアカウント取得
+            let user = NCMBUser.current()
+            user?.deleteInBackground({ (error) in
+                if error != nil{
+                    print("ログアウトエラー")
+                }else{
+                    //ログインアウト成功
+                    //登録が成功した場合
+                    //スト-リーボードの取得
+                    let storyboard = UIStoryboard(name: "signin", bundle: Bundle.main)
+                    let rootviewcontroller = storyboard.instantiateViewController(withIdentifier: "RootnavigationController")
+                    //画面の一番奥の画面に設定する appdeligateのwindowsと同じ意味
+                    UIApplication.shared.keyWindow?.rootViewController = rootviewcontroller
+                    
+                    //ログインアウトしたらuserdefaultに保存
+                    let ud = UserDefaults.standard
+                    ud.set(false, forKey: "isLogin")
+                    ud.synchronize()
+                }
+            })
+        }
+        
+        //キャンセルボタン
+        let canselAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
+            alertContoller.dismiss(animated: true, completion: nil)
+        }
+        
+        alertContoller.addAction(canselAction)
+        alertContoller.addAction(signoutAction)
+        alertContoller.addAction(deleteaction)
+        self.present(alertContoller, animated: true, completion: nil)
+    }
+
     
 
     

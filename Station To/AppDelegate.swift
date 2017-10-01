@@ -28,6 +28,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey(APIKey.mapKey)
         GMSPlacesClient.provideAPIKey(APIKey.placesKey)
+        
+        
+        //ログイン状態かどうかを判断する
+        let ud = UserDefaults.standard
+        let islogin = ud.bool(forKey: "isLogin")
+        
+        if islogin == true{
+            //ログイン中だったら
+            //iphoneのサイズに合わせて画面を作成してくれる
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            //ストーリーボードの最初の画面　Bundle.mainはこのプロジェクト内にあるストーリーボードということ
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            //最初の画面の生成
+            let rootviewcontroller =  storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
+            self.window?.rootViewController = rootviewcontroller
+            //デフォルトは黒
+            self.window?.backgroundColor = UIColor.white
+            //画面を出す
+            self.window?.makeKeyAndVisible()
+        }else{
+            //ログインしていなかったら
+            //iphoneのサイズに合わせて画面を作成してくれる
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            //ストーリーボードの最初の画面 Bundle.mainはこのプロジェクト内にあるストーリーボードということ
+            let storyboard = UIStoryboard(name: "SignIn", bundle: Bundle.main)
+            //最初の画面の生成
+            let rootviewcontroller =  storyboard.instantiateViewController(withIdentifier: "RootnavigationController")
+            self.window?.rootViewController = rootviewcontroller
+            //デフォルトは黒
+            self.window?.backgroundColor = UIColor.white
+            //画面を出す
+            self.window?.makeKeyAndVisible()
+            
+        }
+
 
         
         
