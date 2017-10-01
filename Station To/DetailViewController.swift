@@ -15,6 +15,8 @@ class DetailViewController: UIViewController {
     
     var places : [NCMBObject] = []
     
+    var detailobjectid : String!
+    
     @IBOutlet var detailnameLabel : UILabel!
     var detailname : String!
     
@@ -67,7 +69,7 @@ class DetailViewController: UIViewController {
     //チェックイン履歴の詳細表示NCMBデータの取得
     func showdetail(){
         let query = NCMBQuery(className: "Place")
-        query?.whereKey("name", equalTo: detailname)
+        query?.whereKey("objectId", equalTo: detailobjectid)
         query?.findObjectsInBackground({ (result, error) in
             if error != nil {
                 print("チェックイン履歴詳細表示エラー")

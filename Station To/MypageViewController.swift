@@ -18,6 +18,8 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var datemember : [String] = []
     var places = [NCMBObject]()
     
+    var objectidmember : [String] = []
+    
     //useridの表示
     @IBOutlet var useridLabel : UILabel?
     
@@ -81,6 +83,7 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 let detailViewController = segue.destination as! DetailViewController
                 detailViewController.detailname = namemember[indexPath.row]
                 detailViewController.detaildate = datemember[indexPath.row]
+                detailViewController.detailobjectid = objectidmember[indexPath.row]
 
             }
         }
@@ -106,8 +109,11 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         let date = places.object(forKey: "createDate") as! String
                         let datenew = date.substring(to: date.index(date.startIndex, offsetBy: 10))
                         
+                        let objectid = places.object(forKey: "objectId") as! String
+                        
                         self.namemember.append(name)
                         self.datemember.append(datenew)
+                        self.objectidmember.append(objectid)
                         
                     }
                     
