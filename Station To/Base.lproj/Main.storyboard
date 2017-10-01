@@ -372,14 +372,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="メモが入力できます。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QSK-NE-0lB">
-                                <rect key="frame" x="65" y="421" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="徒歩時間" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nxn-ot-j6l">
                                 <rect key="frame" x="88" y="352" width="199" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -395,6 +387,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="選択した場所" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfX-zm-RXX">
+                                <rect key="frame" x="22" y="71" width="331" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="使用した路線" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNy-Rk-Eyx">
                                 <rect key="frame" x="86" y="270" width="199" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -402,9 +401,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="選択した場所" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfX-zm-RXX">
-                                <rect key="frame" x="22" y="71" width="331" height="21"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="memo" translatesAutoresizingMaskIntoConstraints="NO" id="65B-ti-KXT">
+                                <rect key="frame" x="44" y="442" width="282" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="memo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5q-Ua-5x9">
+                                <rect key="frame" x="44" y="413" width="282" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.58034109469999995" blue="0.2901960784" alpha="0.58970997430000005" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -414,13 +421,18 @@
                     </view>
                     <navigationItem key="navigationItem" title="詳細" id="49Z-0X-jyj">
                         <barButtonItem key="backBarButtonItem" title="マイページ" id="WdM-iL-w8O"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="I3y-Qo-hmg"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="I3y-Qo-hmg">
+                            <connections>
+                                <action selector="editmemo" destination="pFZ-Kx-jOP" id="uuD-Qc-AoT"/>
+                                <segue destination="EDD-RH-Hej" kind="show" identifier="toEdit" id="taw-gR-9Jn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="detaildateLabel" destination="RDR-lJ-fWX" id="rl1-tX-Nmh"/>
                         <outlet property="detailexitLabel" destination="nMF-RQ-i7J" id="JNQ-7N-aYB"/>
                         <outlet property="detaillineLabel" destination="zNy-Rk-Eyx" id="5Do-oT-i1O"/>
-                        <outlet property="detailmemoTextView" destination="QSK-NE-0lB" id="EHB-0D-BnD"/>
+                        <outlet property="detailmemoTextView" destination="65B-ti-KXT" id="dRn-4f-6dg"/>
                         <outlet property="detailnameLabel" destination="BfX-zm-RXX" id="Dqa-qE-PLn"/>
                         <outlet property="detailnumberoftrainLabel" destination="lbn-Ot-Zjj" id="BLN-Ha-bDY"/>
                         <outlet property="detailstationLabel" destination="Jty-DO-aEg" id="Rcm-nm-dsF"/>
@@ -430,6 +442,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="76l-oK-4Cv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3992.8000000000002" y="1342.5787106446778"/>
+        </scene>
+        <!--メモの編集-->
+        <scene sceneID="LCh-XM-MQs">
+            <objects>
+                <viewController id="EDD-RH-Hej" customClass="editmemoViewController" customModule="Station_To" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LXX-yr-Ncd"/>
+                        <viewControllerLayoutGuide type="bottom" id="GEk-PW-9Iw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kdG-J1-HAp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3z-ol-SVZ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.58034109469999995" blue="0.2901960784" alpha="0.58970997430000005" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8A-MA-qfp">
+                                <rect key="frame" x="-69" y="145" width="331" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="選択した場所" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rv8-qb-4dc">
+                                <rect key="frame" x="22" y="77" width="331" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5ST-ua-B4i">
+                                <rect key="frame" x="67" y="145" width="240" height="245"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="このメモは公開されません" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mlz-dd-n5o">
+                                <rect key="frame" x="92" y="398" width="191" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="メモの編集" id="iht-r6-NAR">
+                        <barButtonItem key="backBarButtonItem" title="戻る" id="xVQ-Bv-CLl"/>
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="kSf-Hi-q3B">
+                            <connections>
+                                <action selector="save" destination="EDD-RH-Hej" id="OpF-kv-FAd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="memoeditTextView" destination="5ST-ua-B4i" id="tBl-oq-Fug"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hZs-df-rYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4837.6000000000004" y="1342.5787106446778"/>
         </scene>
         <!--路線選択-->
         <scene sceneID="BeX-dX-Wvg">

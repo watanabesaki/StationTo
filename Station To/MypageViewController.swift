@@ -102,7 +102,7 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 let places = result as! [NCMBObject]
                 //print(places)
                 
-                if places != nil{
+                if places != nil {
                     //for文を逆から回して最新の履歴を上にする
                     for places in places.reversed() {
                         let name = places.object(forKey: "name") as! String
@@ -189,7 +189,7 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     
     @IBAction func showmenu(){
-        let alertContoller = UIAlertController(title: "メニュー", message: "メニューを選択してください", preferredStyle: .actionSheet)
+        let alertContoller = UIAlertController(title: "メニュー", message: "選択してください", preferredStyle: .actionSheet)
         //ログアウトボタン
         let signoutAction = UIAlertAction(title: "ログアウト", style: .default) { (action) in
             NCMBUser.logOutInBackground({ (error) in

@@ -39,6 +39,7 @@ class DetailViewController: UIViewController {
     var detaitime : String = ""
     
     @IBOutlet var detailmemoTextView : UITextView!
+    var detailmemo : String = ""
 
     
 
@@ -48,12 +49,13 @@ class DetailViewController: UIViewController {
         showdetail()
         
         detailnameLabel.text = detailname
-        detaildateLabel.text = detaildate
-        detailstationLabel.text = detailstation
-        detailexitLabel.text = detailexit
-        detaillineLabel.text = detailline
-        detailnumberoftrainLabel.text = detailnumberoftrain
-        detailtimeLabel.text = detaitime
+        detaildateLabel.text = "訪問日：\(detaildate)"
+        detailstationLabel.text = "駅名：\(detailstation)駅"
+        detailexitLabel.text = "出口：\(detailexit)"
+        detaillineLabel.text = "路線：\(detailline)"
+        detailnumberoftrainLabel.text = "出口に近い車両：\(detailnumberoftrain)号車"
+        detailtimeLabel.text = "駅から：\(detaitime)分"
+        detailmemoTextView.text = detailmemo
         
         
     }
@@ -62,6 +64,17 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let id = segue.identifier {
+            if id == "toEdit" {
+                let editmemoViewController = segue.destination as! editmemoViewController
+                editmemoViewController.editobjectid = detailobjectid
+                editmemoViewController.memo = detailmemo
+            }
+        }
+    }
+
     
 
     
@@ -82,14 +95,17 @@ class DetailViewController: UIViewController {
                         let exit = places.first?.object(forKey: "exit") as! String
                         let line = places.first?.object(forKey: "line") as! String
                         let trainnumber = places.first?.object(forKey: "trainNumber") as! String
-                        //let time = places.object(forKey: "time") as! String
-                        
+                        let time = places.first?.object(forKey: "time") as! String
+                        let memo = places.first?.object(forKey: "memo") as! String
+
+                    
 
                         self.detailstation = station
                         self.detailexit = exit
                         self.detailline = line
                         self.detailnumberoftrain = trainnumber
-                        //self.detatitime = time
+                        self.detaitime = time
+                        self.detailmemo = memo
                             
                         //print(self.detatilstation)
                     
@@ -141,15 +157,28 @@ class DetailViewController: UIViewController {
             }
         )}*/
 
-                
-
-        
-    
-
-
-
-
-
-
 }*/
+    
+    
+    @IBAction func editmemo(){
+        let alertContoller = UIAlertController(title: "編集", message: "選択してください", preferredStyle: .actionSheet)
+        //チェックイン登録情報編集ボタン
+        let editAction = UIAlertAction(title: "チェックイン情報の編集", style: .default) { (action) in
+            //チェックイン登録情報の編集　メモの追加
+            
+            
+        }
+        
+        //キャンセルボタン
+        let canselAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
+            alertContoller.dismiss(animated: true, completion: nil)
+        }
+        
+        alertContoller.addAction(canselAction)
+        alertContoller.addAction(editAction)
+        self.present(alertContoller, animated: true, completion: nil)
+    }
+    
+    
+    
 }

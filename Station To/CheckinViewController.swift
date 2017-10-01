@@ -262,6 +262,8 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                 object?.setObject(Place.shared.trainNumber, forKey: "trainNumber")
                 object?.setObject(Place.shared.location?.longitude, forKey: "longitude")
                 object?.setObject(Place.shared.location?.latitude, forKey: "latitude")
+                object?.setObject("", forKey: "memo")
+
                 object?.saveInBackground({ (error) in
                     if error != nil {
                         //保存に失敗
