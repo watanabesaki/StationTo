@@ -58,6 +58,8 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
     
     var placesClient: GMSPlacesClient!
     
+    var searchplaceName : String!
+    
     //UIViewではなくGMSMapVIew
     @IBOutlet var mapView: GMSMapView!
 
@@ -187,11 +189,12 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         
         let stationViewController = segue.destination as! StationViewController
         stationViewController.location = searchedLocation
+        stationViewController.selectedplace = searchplaceName
         
         /*
         let cheakinViewController = segue.destination as! CheckinViewController
-        cheakinViewController.searchname = Place.shared.name
-        cheakinViewController.searchlocation = Place.shared.coordinate
+        cheakinViewController.searchName = searchplaceName
+        cheakinViewController.searchlocation = searchedLocation
         */
         
     }
@@ -210,6 +213,12 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
         self.mapView.animate(toZoom: 16.0)
         self.mapView.animate(toLocation: place.coordinate)
         createMarker(position: place.coordinate, name: place.name)
+        
+        //print(place.name)
+        //検索した場所の名前
+        searchplaceName = place.name
+        
+        //print(searchplaceName)
         
         }
     
@@ -232,23 +241,23 @@ class ViewController: UIViewController,UITextFieldDelegate, GMSAutocompleteResul
     func mapView(_ mapView: GMSMapView, didTapMarker marker: GMSMarker) {
         
         //マーカーをタップした時のアラート
-        let actionSheet = UIAlertController(title: marker.snippet, message: "選択してください", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: searchplaceName, message: "選択してください", preferredStyle: .actionSheet)
         let searchAction = UIAlertAction(title: "最寄り駅を検索", style: .default) { (action) in
             self.searchedLocation = marker.position
             self.performSegue(withIdentifier: "ToStation", sender: nil)
         }
-        
+        /*
         let checkinAction = UIAlertAction(title: "チェックイン", style: .default) { (action) in
              Place.shared.name = marker.snippet
              Place.shared.location = marker.position
             self.tabBarController?.selectedIndex = 1
-        }
+        }*/
         
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
             
         }
         actionSheet.addAction(searchAction)
-        actionSheet.addAction(checkinAction)
+        //actionSheet.addAction(checkinAction)
         actionSheet.addAction(cancelAction)
         self.present(actionSheet, animated: true, completion: nil)
     }

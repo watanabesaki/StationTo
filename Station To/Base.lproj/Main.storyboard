@@ -607,6 +607,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xf6-1K-yE3">
+                                    <rect key="frame" x="0.0" y="78" width="375" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recommendCell" rowHeight="50" id="izl-Wb-kTL">
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
@@ -638,6 +645,7 @@
                         <barButtonItem key="backBarButtonItem" title="戻る" id="Zb7-Lm-CZQ"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="nodateLabel" destination="xf6-1K-yE3" id="bsU-RQ-2AX"/>
                         <outlet property="recommendTableView" destination="3a8-Tn-7yO" id="Wdv-8I-3C3"/>
                         <outlet property="selectedLineNameLabel" destination="pru-dn-s7E" id="IkU-Z2-y9B"/>
                         <outlet property="selectedStationNameLabel" destination="TCb-Mn-x2W" id="Xjw-ju-fLD"/>
@@ -766,59 +774,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ro8-Dg-qou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2266.4000000000001" y="-119.1904047976012"/>
-        </scene>
-        <!--Item 2-->
-        <scene sceneID="SG0-j6-jG8">
-            <objects>
-                <viewController id="XoE-OF-UMD" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Vb8-TC-TCZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="bGE-Le-hwN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="clb-st-pP6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="Khu-qk-xkp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LIm-Nz-Pv7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
-        <!--Item 1-->
-        <scene sceneID="XrL-cz-KOh">
-            <objects>
-                <viewController id="wlf-zw-WKW" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kd1-or-mp6"/>
-                        <viewControllerLayoutGuide type="bottom" id="GIa-ah-ACl"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cve-5a-qA0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="ghg-uE-os0"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fv1-V1-csx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="13a-qu-Qrc">
-            <objects>
-                <tabBarController id="DHR-OU-JAr" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="67o-c2-nBa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="wlf-zw-WKW" kind="relationship" relationship="viewControllers" id="t6U-8w-Jio"/>
-                        <segue destination="XoE-OF-UMD" kind="relationship" relationship="viewControllers" id="rGk-fv-EKY"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qZY-nl-1rp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

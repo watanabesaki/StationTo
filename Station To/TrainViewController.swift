@@ -26,6 +26,8 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
     //駅配列
     var stations = [Station]()
     var location: CLLocationCoordinate2D!
+    
+    var selectedplaceName : String!
 
     
     //駅コード変数
@@ -56,7 +58,7 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
             //取得したファイルを登録
             LineTableView.register(nib, forCellReuseIdentifier: "LineCell")
         
-        print(Linemember)
+        //print(Linemember)
         
         //トップに戻るボタンを作成
         /*
@@ -121,6 +123,8 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
         
         //駅名の値渡し
         trainviewcontroller.selectedStationName = selectedStation
+        trainviewcontroller.selectedplace = selectedplaceName
+        
         
     }
     
@@ -175,16 +179,16 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
         if let code = stationCodes.first {
             //駅コードから路線検索
             let url = "http://www.ekidata.jp/api/g/\(code).xml"
-            print(url)
+            //print(url)
             //Alamofire XML形式　SWXMHash
             Alamofire.request(url).response{ response in
                 let xml = SWXMLHash.parse(response.data!)
                 
                 for stationInfo in xml["ekidata"]["station_g"].all {
-                    print(stationInfo)
+                    //print(stationInfo)
                     let line = Line(stationCode: stationInfo["station_cd"].element!.text, stationName: stationInfo["station_name"].element!.text, lineCode: stationInfo["line_cd"].element!.text, lineName: stationInfo["line_name"].element!.text)
                     self.Linemember.append(line)
-                    print(self.Linemember)
+                    //print(self.Linemember)
                 }
                 self.LineTableView.reloadData()
             }

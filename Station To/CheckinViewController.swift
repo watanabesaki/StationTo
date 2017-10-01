@@ -16,14 +16,15 @@ import SVProgressHUD
 
 class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
-    //検索した場所の名前、緯度経度
-    //var searchname : string!
-    //var searchlocation : CLLocationCoordinate2D?
     
     var locationManager: CLLocationManager!
     
     //googleplace現在地の取得
     var placesClient: GMSPlacesClient!
+    
+    //検索した場所の名前
+    //var searchName : String!
+    //var searchlocation : CLLocationCoordinate2D!
 
     
     //駅名入力
@@ -114,6 +115,9 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         self.timeInput.inputAccessoryView = toolbar
         pickerview4.tag = 4
         
+        
+        //print(searchName)
+        //print(searchlocation.latitude)
     }
     
     override func didReceiveMemoryWarning() {
