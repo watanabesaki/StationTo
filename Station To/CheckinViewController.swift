@@ -267,6 +267,9 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                 object?.setObject(Place.shared.location?.longitude, forKey: "longitude")
                 object?.setObject(Place.shared.location?.latitude, forKey: "latitude")
                 object?.setObject("", forKey: "memo")
+                //ユーザ情報読み込み、保存
+                let userId = NCMBUser.current().userName
+                object?.setObject(userId, forKey: "userId")
 
                 object?.saveInBackground({ (error) in
                     if error != nil {

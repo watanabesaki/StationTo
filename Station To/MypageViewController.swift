@@ -94,6 +94,10 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
     //チェックイン履歴の表示NCMBデータの取得
     func showhistory(){
         let query = NCMBQuery(className: "Place")
+        // ユーザ情報の読み出し
+        let userId = NCMBUser.current().userName
+        query?.whereKey("userId", equalTo: userId)
+        
         query?.findObjectsInBackground({ (result, error) in
             if error != nil {
                 print("マイページ履歴error")
