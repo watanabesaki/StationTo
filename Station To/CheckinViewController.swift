@@ -283,6 +283,15 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                         Place.shared.trainNumber = nil
                         Place.shared.location = nil
                         
+                        self.stationInput.text = ""
+                        self.lineInput.text = ""
+                        self.exitInput.text  = ""
+                        self.numberOfLineInput.text = ""
+                        self.timeInput.text = ""
+
+
+                        
+                        
                         //print(Place.shared.location) nilになっている
                         
                         //指定した秒数後に処理を実行
