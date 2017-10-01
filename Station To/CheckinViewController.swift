@@ -54,8 +54,8 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var pickerview4 : UIPickerView = UIPickerView()
     
     //チェックインした場所の名前、住所
-    @IBOutlet var nameLabel : UILabel!
-    @IBOutlet var addressLabel : UILabel!
+    //@IBOutlet var nameLabel : UILabel!
+    //@IBOutlet var addressLabel : UILabel!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -229,6 +229,7 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         Place.shared.line = lineInput.text
         Place.shared.exit = exitInput.text
         Place.shared.trainNumber = numberOfLineInput.text
+        Place.shared.time = timeInput.text
         
         //現在地周辺地図表示
         print(Place.shared)
@@ -257,7 +258,7 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                 object?.setObject(Place.shared.station, forKey: "station")
                 object?.setObject(Place.shared.line, forKey: "line")
                 object?.setObject(Place.shared.exit, forKey: "exit")
-                //object?.setObject(Place.shared.direction, forKey: "direction")
+                object?.setObject(Place.shared.time, forKey: "time")
                 object?.setObject(Place.shared.trainNumber, forKey: "trainNumber")
                 object?.setObject(Place.shared.location?.longitude, forKey: "longitude")
                 object?.setObject(Place.shared.location?.latitude, forKey: "latitude")
@@ -265,22 +266,24 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                     if error != nil {
                         //保存に失敗
                         SVProgressHUD.showError(withStatus: error!.localizedDescription)
-                        self.nameLabel.text = "場所が選択されていません"
-                        self.addressLabel.text = ""
+                        //self.nameLabel.text = "場所が選択されていません"
+                        //self.addressLabel.text = ""
                     } else {
                         //保存に成功
                         SVProgressHUD.showSuccess(withStatus: "チェックイン完了")
-                        self.nameLabel.text = place.name
-                        self.addressLabel.text = place.formattedAddress?.components(separatedBy: ", ")
-                            .joined(separator: "\n")
+                        //self.nameLabel.text = place.name
+                        //self.addressLabel.text = place.formattedAddress?.components(separatedBy: ", ")
+                            //.joined(separator: "\n")
                         
                         Place.shared.name = nil
                         Place.shared.station = nil
                         Place.shared.line = nil
                         Place.shared.exit = nil
-                        Place.shared.direction = nil
+                        Place.shared.time = nil
                         Place.shared.trainNumber = nil
                         Place.shared.location = nil
+                        
+                        //print(Place.shared.location) nilになっている
                         
                         //指定した秒数後に処理を実行
                         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(5)) {

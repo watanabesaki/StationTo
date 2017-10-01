@@ -16,25 +16,25 @@ class DetailViewController: UIViewController {
     var places : [NCMBObject] = []
     
     @IBOutlet var detailnameLabel : UILabel!
-    var detatilname : String!
+    var detailname : String!
     
     @IBOutlet var detaildateLabel : UILabel!
-    var detatildate : String = ""
+    var detaildate : String = ""
     
     @IBOutlet var detailstationLabel : UILabel!
-    var detatilstation : String = ""
+    var detailstation : String = ""
     
     @IBOutlet var detaillineLabel : UILabel!
-    var detatilline :String = ""
+    var detailline :String = ""
     
     @IBOutlet var detailexitLabel : UILabel!
-    var detatilexit : String = ""
+    var detailexit : String = ""
     
     @IBOutlet var detailnumberoftrainLabel : UILabel!
-    var detatilnumberoftrain : String = ""
+    var detailnumberoftrain : String = ""
     
     @IBOutlet var detailtimeLabel : UILabel!
-    var detatitime : String = ""
+    var detaitime : String = ""
     
     @IBOutlet var detailmemoTextView : UITextView!
 
@@ -45,13 +45,13 @@ class DetailViewController: UIViewController {
 
         showdetail()
         
-        detailnameLabel.text = detatilname
-        detaildateLabel.text = detatildate
-        detailstationLabel.text = detatilstation
-        detailexitLabel.text = detatilexit
-        detaillineLabel.text = detatilline
-        detailnumberoftrainLabel.text = detatilnumberoftrain
-        detailtimeLabel.text = detatitime
+        detailnameLabel.text = detailname
+        detaildateLabel.text = detaildate
+        detailstationLabel.text = detailstation
+        detailexitLabel.text = detailexit
+        detaillineLabel.text = detailline
+        detailnumberoftrainLabel.text = detailnumberoftrain
+        detailtimeLabel.text = detaitime
         
         
     }
@@ -61,44 +61,40 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        reloadInputViews()
-    }
+
     
     
-    //チェックイン履歴の表示NCMBデータの取得
+    //チェックイン履歴の詳細表示NCMBデータの取得
     func showdetail(){
         let query = NCMBQuery(className: "Place")
+        query?.whereKey("name", equalTo: detailname)
         query?.findObjectsInBackground({ (result, error) in
             if error != nil {
                 print("チェックイン履歴詳細表示エラー")
             } else {
-                self.places = result as! [NCMBObject]
-                print(self.places.count)
+                let places = result as! [NCMBObject]
                 
-                if self.places != nil{
-                    print("チェックイン履歴はありません")
+                if  places != nil{
                     
+                        let station = places.first?.object(forKey: "station") as! String
+                        let exit = places.first?.object(forKey: "exit") as! String
+                        let line = places.first?.object(forKey: "line") as! String
+                        let trainnumber = places.first?.object(forKey: "trainNumber") as! String
+                        //let time = places.object(forKey: "time") as! String
+                        
+
+                        self.detailstation = station
+                        self.detailexit = exit
+                        self.detailline = line
+                        self.detailnumberoftrain = trainnumber
+                        //self.detatitime = time
+                            
+                        //print(self.detatilstation)
+                    
+                    self.viewDidLoad()
+
                 }else{
-                    for place in self.places {
-                        let name = place.object(forKey: "name") as! String
-                        let date = place.object(forKey: "createDate") as! String
-                        let station = place.object(forKey: "station") as! String
-                        let exit = place.object(forKey: "exit") as! String
-                        let line = place.object(forKey: "line") as! String
-                        let trainnumber = place.object(forKey: "trainnumber") as! String
-                        let time = place.object(forKey: "time") as! String
-                        
-
-                        self.detatildate = date
-                        self.detatilstation = station
-                        self.detatilexit = exit
-                        self.detatilline = line
-                        self.detatilnumberoftrain = trainnumber
-                        self.detatitime = time
-                        
-                    }
-
+                    print("チェックイン履歴はありません")
                 }
                 
             }

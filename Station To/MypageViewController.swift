@@ -20,6 +20,9 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     //TableViewの宣言
     @IBOutlet var historyTableView : UITableView!
+    
+    //下にスワイプすると更新
+    var refreshControl:UIRefreshControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,13 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
         //取得したファイルを登録
         historyTableView.register(nib, forCellReuseIdentifier: "historyCell")
         historyTableView.reloadData()
+        
+        //下にスワイプすると履歴の更新
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "更新中...") // Loading中に表示する文字を決める
+        self.refreshControl.addTarget(self, action: "pullToRefresh", for:.valueChanged)
+        self.historyTableView.addSubview(refreshControl)
+        //refreshControl = refresh
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,13 +58,16 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
+    
     //画面遷移、次の画面へ選択した場所名を渡す
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let id = segue.identifier {
             if id == "toDetail" {
                 let indexPath = historyTableView.indexPathForSelectedRow!
                 let detailViewController = segue.destination as! DetailViewController
-                detailViewController.detatilname = namemember[indexPath.row]
+                detailViewController.detailname = namemember[indexPath.row]
+                detailViewController.detaildate = datemember[indexPath.row]
+
             }
         }
     }
@@ -70,11 +83,11 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
             } else {
                 //履歴の読み込みが可能
                 let places = result as! [NCMBObject]
-                print(places)
+                //print(places)
                 
                 if places != nil{
-                    
-                    for places in places {
+                    //for文を逆から回して最新の履歴を上にする
+                    for places in places.reversed() {
                         let name = places.object(forKey: "name") as! String
                         let date = places.object(forKey: "createDate") as! String
                         let datenew = date.substring(to: date.index(date.startIndex, offsetBy: 10))
@@ -83,7 +96,6 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         self.datemember.append(datenew)
                         
                     }
-                    print(self.namemember)
                     
                     self.historyTableView.reloadData()
                 }else{
@@ -142,6 +154,15 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         //戻った時の選択状態解除
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    // 下にスワイプしたら更新
+    func pullToRefresh(){
+        showhistory()//データを取る関数を呼び出す
+        refreshControl.endRefreshing() // データが取れたら更新を終える（くるくる回るViewを消去）
+        self.historyTableView.reloadData() // tableView自身を再読み込み
+        print("リロード完了")
+        
     }
     
 

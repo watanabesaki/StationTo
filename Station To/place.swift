@@ -23,6 +23,7 @@ struct Place {
     var exit: String?
     var trainNumber: String?
     var location: CLLocationCoordinate2D?
+    var time : String!
     
 }
 
