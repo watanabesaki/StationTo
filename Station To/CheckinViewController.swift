@@ -14,6 +14,10 @@ import GooglePlacePicker
 import NCMB
 import SVProgressHUD
 
+import Alamofire
+import SwiftyJSON
+
+
 class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     
@@ -29,7 +33,7 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     //駅名入力
     @IBOutlet var stationInput : UITextField!
-    let stationInputList = ["","日比谷","新橋","内幸町"]
+    var stationInputList : [String] = []
     
     //路線入力
     @IBOutlet var lineInput : UITextField!
@@ -65,6 +69,9 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         //現在地取得
         getCurrentPlace()
+        
+        //現在地最寄り駅取得
+        stationoption()
         
         //この画面で有効にする
         pickerview1.delegate = self
@@ -220,10 +227,35 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                     Place.shared.name = place.name
                     Place.shared.location = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
                     
+                    self.stationoption()
+                    
                 }
             }
         })
     }
+    
+    //現在地最寄り駅候補
+    func stationoption(){
+        if let location = Place.shared.location {
+            let url = "http://map.simpleapi.net/stationapi?x=\(location.longitude)&y=\(location.latitude)&output=json"
+            print(url)
+            
+            
+            Alamofire.request(url).responseJSON { (response) in
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    for stationInfo in json.arrayValue {
+                        let station = Station(name: stationInfo["name"].string!)
+                        self.stationInputList.append(station.name)
+                        print(self.stationInputList)
+                    }
+                    // ピッカーを更新
+                    self.reloadInputViews()
+                }
+            }
+        }
+    }
+
     
     //Place Picker を追加する チェックインボタン
     @IBAction func pickPlace(_ sender: UIButton) {
@@ -254,8 +286,9 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                 return
             }
             
+            Place.shared.name = place?.name
             //現在地候補から選ぶと名前、住所の表示
-            if let place = place {
+            if place != nil {
                 //NCMBに書き込み保存
                 let object = NCMBObject(className: "Place")
                 object?.setObject(Place.shared.name, forKey: "name")
@@ -314,11 +347,6 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             }
         }
    )}
-    
-    
-    
-    
-    
     
     
     
