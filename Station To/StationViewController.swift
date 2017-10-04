@@ -22,6 +22,10 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
     //場所名表示
     @IBOutlet var selectedplaceLabel : UILabel?
     var selectedplace : String!
+    
+    //駅の住所
+    var stationcity : String!
+
 
     
     //駅配列
@@ -62,6 +66,7 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
                 let trainViewController = segue.destination as! TrainViewController
                 trainViewController.selectedStation = stations[indexPath.row].name
                 trainViewController.selectedplaceName = selectedplace
+                trainViewController.stationcityName = stationcity
             }
         }
     }
@@ -103,12 +108,19 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
             Alamofire.request(url).responseJSON { (response) in
                 if let value = response.result.value {
                     let json = JSON(value)
+                    //print(json)
                     for stationInfo in json.arrayValue {
                         var station = Station(name: stationInfo["name"].string!)
-                        station.traveltime = stationInfo["traveltime"].string!
+                        station.traveltime = stationInfo["distanceKm"].string!
                         self.stations.append(station)
                         
+                        self.stationcity = stationInfo["city"].string!
+                        print(self.stationcity)
+
+
+                        
                     }
+                    
                     self.StationTableView.reloadData()
                     
                 }

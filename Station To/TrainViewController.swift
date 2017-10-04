@@ -27,7 +27,11 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
     var stations = [Station]()
     var location: CLLocationCoordinate2D!
     
+    //選ばれた場所名
     var selectedplaceName : String!
+    
+    //駅の住所
+    var stationcityName : String!
 
     
     //駅コード変数
@@ -154,25 +158,32 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
             } else {
                 //駅名を抽出
                 let name = splitStationRow[2]
+                let stationcity = splitStationRow[8]
 
-                //選択した駅名と等しい駅名があったら
+                //選択した駅名と等しい駅名があったら  && stationcity.contains(stationcityName)
+
                 if let selectedstation = selectedStation {
-                    if name.contains(String(selectedstation.characters.dropLast())) == true {
-                        // 駅コード抽出、配列に追加
-                        let stationCode = splitStationRow[1]
-                        stationCodes.append(stationCode)
-                        print(stationCode)
-                    }
-                } else {
-                    //現在地
-                    if let station = Place.shared.station {
-                        if name.contains(String(station.characters.dropLast())) == true {
+                    //駅の場所が等しい
+                    if stationcity.contains(stationcityName){
+                        if name.contains(String(selectedstation.characters.dropLast())) == true {
                             // 駅コード抽出、配列に追加
                             let stationCode = splitStationRow[1]
                             stationCodes.append(stationCode)
+                            print(stationCode)
+                        }
+                    } else {
+                        //現在地
+                        if let station = Place.shared.station {
+                            if name.contains(String(station.characters.dropLast())) == true {
+                                // 駅コード抽出、配列に追加
+                                let stationCode = splitStationRow[1]
+                                stationCodes.append(stationCode)
+                            }
                         }
                     }
                 }
+                    
+                    
             }
         }
         

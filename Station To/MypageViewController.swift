@@ -184,7 +184,7 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     // 下にスワイプしたら更新
     func pullToRefresh(){
-        showhistory()//データを取る関数を呼び出す
+        //showhistory()//データを取る関数を呼び出す
         refreshControl.endRefreshing() // データが取れたら更新を終える（くるくる回るViewを消去）
         self.historyTableView.reloadData() // tableView自身を再読み込み
         print("リロード完了")
