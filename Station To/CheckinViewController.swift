@@ -16,6 +16,7 @@ import SVProgressHUD
 
 import Alamofire
 import SwiftyJSON
+import SWXMLHash
 
 
 class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -35,9 +36,17 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet var stationInput : UITextField!
     var stationInputList : [String] = []
     
+    //最寄り駅検索で使用
+    var stationoption : String = ""
+    var stationcity : String!
+    var cityList : [String] = []
+    
     //路線入力
     @IBOutlet var lineInput : UITextField!
-    let lineInputList = ["","JR山手線","JR京浜東北線"]
+    var lineInputList : [String] = []
+    
+    //駅コード変数
+    var stationCodes = [String]()
     
     //出口入力
     @IBOutlet var exitInput : UITextField!
@@ -69,9 +78,6 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         //現在地取得
         getCurrentPlace()
-        
-        //現在地最寄り駅取得
-        stationoption()
         
         //この画面で有効にする
         pickerview1.delegate = self
@@ -227,7 +233,8 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                     Place.shared.name = place.name
                     Place.shared.location = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
                     
-                    self.stationoption()
+                    self.stationoptionshow()
+                    //self.lineoption()
                     
                 }
             }
@@ -235,27 +242,134 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     //現在地最寄り駅候補
-    func stationoption(){
+    func stationoptionshow(){
         if let location = Place.shared.location {
             let url = "http://map.simpleapi.net/stationapi?x=\(location.longitude)&y=\(location.latitude)&output=json"
-            print(url)
+            //print(url)
             
             
             Alamofire.request(url).responseJSON { (response) in
                 if let value = response.result.value {
                     let json = JSON(value)
+                    //print(json)
                     for stationInfo in json.arrayValue {
                         let station = Station(name: stationInfo["name"].string!)
+                        let city = stationInfo["city"].string!
+
                         self.stationInputList.append(station.name)
-                        print(self.stationInputList)
+                        self.cityList.append(city)
+                        //stationcity = city [0]
+
+                        //print(self.cityList)
                     }
+                    
                     // ピッカーを更新
                     self.reloadInputViews()
                 }
             }
         }
     }
-
+    
+    /*
+    //最寄り駅から路線をピッカーの表示
+    func lineoption(){
+        //CSVファイルの読み込み
+        let allStations = loadCSV(filename: "station20170403free")
+        
+        for station in allStations {
+            //カンマで区切る
+            let splitStationRow = station.components(separatedBy: ",")
+            //print(splitStationRow)
+            //print(splitStationRow.count)
+            //3回以下なら
+            if splitStationRow.count < 3 {
+                print("三番目を検索したいので、要素が三個以上必要である。")
+                //return
+            } else {
+                //駅名を抽出
+                let name = splitStationRow[2]
+                let city = splitStationRow[8]
+                
+                
+                    //stationInputListを最初から最後まで探す
+                    for i in 0..<stationInputList.count{
+                        //もし、i番目のnameとj番目のstationInputlistが一致したとき
+                        if city.contains(cityList[i]){
+                            if name.contains(String(stationInputList[i].characters.dropLast())) {
+                                let stationCode = splitStationRow[1]
+                                stationCodes.append(stationCode)
+                                print(stationCodes)
+                            }
+                        }
+                    }
+                    
+                    /*
+                        //駅の場所が等しい
+                        if let city.contains(cityList[i]) {
+                            if name.contains(String(stationInputList[i].characters.dropLast())){
+                                // 駅コード抽出、配列に追加
+                                let stationCode = splitStationRow[1]
+                                stationCodes.append(stationCode)
+                                print(stationCode)
+                            }
+                        } else {
+                            //現在地
+                            if let stationOption = Place.shared.station {
+                                if name.contains(String(stationOption.characters.dropLast())) == true {
+                                    // 駅コード抽出、配列に追加
+                                    let stationCode = splitStationRow[1]
+                                    stationCodes.append(stationCode)
+                                }
+                            }
+                        
+                    }*/
+                    
+                    
+                
+            }
+            
+            
+            if let code = stationCodes.first {
+                //駅コードから路線検索
+                let url = "http://www.ekidata.jp/api/g/\(code).xml"
+                //print(url)
+                //Alamofire XML形式　SWXMHash
+                Alamofire.request(url).response{ response in
+                    let xml = SWXMLHash.parse(response.data!)
+                    
+                    for stationInfo in xml["ekidata"]["station_g"].all {
+                        //print(stationInfo)
+                        let line = Line(stationCode: stationInfo["station_cd"].element!.text, stationName: stationInfo["station_name"].element!.text, lineCode: stationInfo["line_cd"].element!.text, lineName: stationInfo["line_name"].element!.text)
+                        //self.lineInputList.append(line)
+                        print(line)
+                    }
+                    // ピッカーを更新
+                    self.reloadInputViews()
+                }
+            } else {
+                print("駅コードから路線が見つかりません")
+            }
+        }
+                
+    }
+    
+    //CSVファイルの読み込み
+    func loadCSV(filename: String) -> [String] {
+        var csvArray = [String]()
+        let csvBundle = Bundle.main.path(forResource: filename, ofType: "csv")
+        do {
+            let csvData = try String(contentsOfFile: csvBundle!,
+                                     encoding: String.Encoding.utf8)
+            csvArray = csvData.components(separatedBy:"\n")
+        } catch {
+            print("読み込みエラー \(filename).csv")
+        }
+        return csvArray
+    }
+    */
+    
+    
+    
     
     //Place Picker を追加する チェックインボタン
     @IBAction func pickPlace(_ sender: UIButton) {

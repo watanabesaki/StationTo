@@ -50,7 +50,7 @@ class DetailViewController: UIViewController {
         
         detailnameLabel.text = detailname
         detaildateLabel.text = "訪問日：\(detaildate)"
-        detailstationLabel.text = "駅名：\(detailstation)駅"
+        detailstationLabel.text = "駅名：\(detailstation)"
         detailexitLabel.text = "出口：\(detailexit)"
         detaillineLabel.text = "路線：\(detailline)"
         detailnumberoftrainLabel.text = "出口に近い車両：\(detailnumberoftrain)号車"

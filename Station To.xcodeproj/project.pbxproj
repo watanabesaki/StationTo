@@ -24,6 +24,7 @@
 		D4B346A21F3EA10400924C3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A01F3EA10400924C3D /* Main.storyboard */; };
 		D4B346A41F3EA10400924C3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A31F3EA10400924C3D /* Assets.xcassets */; };
 		D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A51F3EA10400924C3D /* LaunchScreen.storyboard */; };
+		D4BA27581F88C0DC008A7C58 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = D4BA27571F88C0DC008A7C58 /* ios */; };
 		D4EBE43E1F77ADA200EDD7B3 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBE43C1F77ADA200EDD7B3 /* StationViewController.swift */; };
 		D4EBE4421F77B54E00EDD7B3 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBE4401F77B54E00EDD7B3 /* StationTableViewCell.swift */; };
 		D4EBE4431F77B54E00EDD7B3 /* StationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EBE4411F77B54E00EDD7B3 /* StationTableViewCell.xib */; };
@@ -69,6 +70,7 @@
 		D4B346A31F3EA10400924C3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B346A61F3EA10400924C3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4B346A81F3EA10400924C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4BA27571F88C0DC008A7C58 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ios; sourceTree = "<group>"; };
 		D4EBE43C1F77ADA200EDD7B3 /* StationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
 		D4EBE4401F77B54E00EDD7B3 /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		D4EBE4411F77B54E00EDD7B3 /* StationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationTableViewCell.xib; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		D4B3469B1F3EA10400924C3D /* Station To */ = {
 			isa = PBXGroup;
 			children = (
+				D4BA27571F88C0DC008A7C58 /* ios */,
 				D4EBE4451F77F3D500EDD7B3 /* Model */,
 				D4EBE4441F77E6DA00EDD7B3 /* Source */,
 				D4F67B7D1F5AF140004A245D /* GDHighwayGoJA-Rev112b2-OTF */,
@@ -323,6 +326,7 @@
 				D4B346A21F3EA10400924C3D /* Main.storyboard in Resources */,
 				D4EDD4A11F590A58001B6B0C /* icons_map@2x.png in Resources */,
 				D4EDD4A61F590A94001B6B0C /* icons_mypage@2x.png in Resources */,
+				D4BA27581F88C0DC008A7C58 /* ios in Resources */,
 				D49E9AF21F46715000781F71 /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

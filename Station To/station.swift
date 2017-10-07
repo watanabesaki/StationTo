@@ -18,6 +18,7 @@ struct Station {
     
     init(name: String) {
         self.name = name
+        
     }
     
 }
