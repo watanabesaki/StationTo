@@ -159,6 +159,8 @@ class TrainViewController: UIViewController,UITableViewDataSource,UITableViewDel
                 //駅名を抽出
                 let name = splitStationRow[2]
                 let stationcity = splitStationRow[8]
+                //print(name)
+                //print(stationcity)
 
                 //選択した駅名と等しい駅名があったら  && stationcity.contains(stationcityName)
 

@@ -25,6 +25,7 @@
 		D4B346A41F3EA10400924C3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A31F3EA10400924C3D /* Assets.xcassets */; };
 		D4B346A71F3EA10400924C3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B346A51F3EA10400924C3D /* LaunchScreen.storyboard */; };
 		D4BA27581F88C0DC008A7C58 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = D4BA27571F88C0DC008A7C58 /* ios */; };
+		D4BA275E1F88C3A4008A7C58 /* スクリーンショット 2017-10-07 17.05.36.png in Resources */ = {isa = PBXBuildFile; fileRef = D4BA275D1F88C3A4008A7C58 /* スクリーンショット 2017-10-07 17.05.36.png */; };
 		D4EBE43E1F77ADA200EDD7B3 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBE43C1F77ADA200EDD7B3 /* StationViewController.swift */; };
 		D4EBE4421F77B54E00EDD7B3 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBE4401F77B54E00EDD7B3 /* StationTableViewCell.swift */; };
 		D4EBE4431F77B54E00EDD7B3 /* StationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EBE4411F77B54E00EDD7B3 /* StationTableViewCell.xib */; };
@@ -71,6 +72,7 @@
 		D4B346A61F3EA10400924C3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4B346A81F3EA10400924C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4BA27571F88C0DC008A7C58 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ios; sourceTree = "<group>"; };
+		D4BA275D1F88C3A4008A7C58 /* スクリーンショット 2017-10-07 17.05.36.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "スクリーンショット 2017-10-07 17.05.36.png"; sourceTree = "<group>"; };
 		D4EBE43C1F77ADA200EDD7B3 /* StationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
 		D4EBE4401F77B54E00EDD7B3 /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		D4EBE4411F77B54E00EDD7B3 /* StationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationTableViewCell.xib; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		D4EDD4A21F590A61001B6B0C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D4BA275D1F88C3A4008A7C58 /* スクリーンショット 2017-10-07 17.05.36.png */,
 				D4EDD4A51F590A94001B6B0C /* icons_mypage@2x.png */,
 				D4EDD4A31F590A86001B6B0C /* icons8_検索@2x.png */,
 				D4EDD4A01F590A58001B6B0C /* icons_map@2x.png */,
@@ -323,6 +326,7 @@
 				D4AA4F221F3F2D8B0028E581 /* Default-568h@2x.png in Resources */,
 				D4F17B651F67BDFC00EC1489 /* station20170403free.csv in Resources */,
 				D4B346A41F3EA10400924C3D /* Assets.xcassets in Resources */,
+				D4BA275E1F88C3A4008A7C58 /* スクリーンショット 2017-10-07 17.05.36.png in Resources */,
 				D4B346A21F3EA10400924C3D /* Main.storyboard in Resources */,
 				D4EDD4A11F590A58001B6B0C /* icons_map@2x.png in Resources */,
 				D4EDD4A61F590A94001B6B0C /* icons_mypage@2x.png in Resources */,

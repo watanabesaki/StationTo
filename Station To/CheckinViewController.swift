@@ -37,13 +37,94 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var stationInputList : [String] = []
     
     //最寄り駅検索で使用
-    var stationoption : String = ""
-    var stationcity : String!
-    var cityList : [String] = []
+    //var stationoption : String = ""
+    //var stationcity : String!
+    //var cityList : [String] = []
     
     //路線入力
     @IBOutlet var lineInput : UITextField!
-    var lineInputList : [String] = []
+    var lineInputList : [String] = ["JR山手線",
+                                    "JR京浜東北線",
+                                    "JR中央線(快速)",
+                                    "JR総武本線",
+                                    "JR中央本線(東京～塩尻)",
+                                    "JR中央・総武緩行線",
+                                    "JR横須賀線",
+                                    "JR埼京線",
+                                    "JR湘南新宿ライン",
+                                    "上野東京ライン",
+                                    "JR高崎線",
+                                    "JR南武線",
+                                    "JR青梅線",
+                                    "JR武蔵野線",
+                                    "JR川越線",
+                                    "東京メトロ銀座線",
+                                    "東京メトロ丸ノ内線",
+                                    "東京メトロ日比谷線",
+                                    "東京メトロ東西線",
+                                    "東京メトロ千代田線",
+                                    "東京メトロ有楽町線",
+                                    "東京メトロ半蔵門線",
+                                    "東京メトロ南北線",
+                                    "東京メトロ副都心線",
+                                    "JR鶴見線",
+                                    "JR横浜線",
+                                    "JR根岸線",
+                                    "R相模線",
+                                    "JR東海道本線(東京～熱海)",
+                                    "JR五日市線",
+                                    "JR八高線(八王子～高麗川)",
+                                    "JR八高線(高麗川～高崎)",
+                                    "JR外房線",
+                                    "JR内房線",
+                                    "JR京葉線",
+                                    "JR成田線",
+                                    "JR成田エクスプレス",
+                                    "東武東上線",
+                                    "東武伊勢崎線",
+                                    "東武野田線",
+                                    "東武越生線",
+                                    "西武池袋線",
+                                    "西武秩父線",
+                                    "西武有楽町線",
+                                    "西武豊島線",
+                                    "西武狭山線",
+                                    "西武新宿線",
+                                    "西武拝島線",
+                                    "西武西武園線",
+                                    "西武国分寺線",
+                                    "西武多摩湖線",
+                                    "西武多摩川線",
+                                    "京成本線",
+                                    "京成押上線",
+                                    "京成金町線",
+                                    "京成千葉線",
+                                    "京成千原線",
+                                    "京成成田空港線",
+                                    "京王線",
+                                    "京王相模原線",
+                                    "京王高尾線",
+                                    "京王競馬場線",
+                                    "京王動物園線",
+                                    "京王井の頭線",
+                                    "京王新線",
+                                    "小田急小田原線",
+                                    "小田急江ノ島線",
+                                    "小田急多摩線",
+                                    "東急東横線",
+                                    "東急目黒線",
+                                    "東急田園都市線",
+                                    "東急大井町線",
+                                    "東急池上線",
+                                    "東急多摩川線",
+                                    "東急世田谷線",
+                                    "東急こどもの国線",
+                                    "京急本線",
+                                    "京急空港線",
+                                    "京急大師線",
+                                    "京急逗子線",
+                                    "京急久里浜線",
+                                    ]
     
     //駅コード変数
     var stationCodes = [String]()
@@ -58,6 +139,10 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     //何分
     @IBOutlet var timeInput : UITextField!
     let timeinputList = ["","3","5","10","15","20","25","30","40","50","60"]
+    
+    //駅名と場所の配列
+    var namemember : [String] = []
+    var citymember : [String] = []
     
     
     
@@ -234,7 +319,7 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                     Place.shared.location = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
                     
                     self.stationoptionshow()
-                    //self.lineoption()
+                    
                     
                 }
             }
@@ -256,15 +341,18 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                         let station = Station(name: stationInfo["name"].string!)
                         let city = stationInfo["city"].string!
 
-                        self.stationInputList.append(station.name)
-                        self.cityList.append(city)
+                        self.stationInputList.append("\(station.name)")
+                        //self.cityList.append(city)
                         //stationcity = city [0]
 
+                        //print(self.stationInputList)
                         //print(self.cityList)
                     }
                     
                     // ピッカーを更新
+                    print("最寄り駅完了")
                     self.reloadInputViews()
+                    //self.lineoption()
                 }
             }
         }
@@ -290,69 +378,62 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                 let name = splitStationRow[2]
                 let city = splitStationRow[8]
                 
+                namemember.append(name)
+                citymember.append(city)
+                
+                //print(namemember)
+                //print(citymember)
+                
+                //print(stationInputList)
+                
+            }
+        
+        
+        
+        
                 
                     //stationInputListを最初から最後まで探す
                     for i in 0..<stationInputList.count{
                         //もし、i番目のnameとj番目のstationInputlistが一致したとき
-                        if city.contains(cityList[i]){
-                            if name.contains(String(stationInputList[i].characters.dropLast())) {
+                        if namemember.contains(String(stationInputList[i].characters.dropLast())) {
+                            if citymember.contains(cityList[i]){
                                 let stationCode = splitStationRow[1]
                                 stationCodes.append(stationCode)
-                                print(stationCodes)
+                                print(cityList[i])
+                                
+                                if let code = stationCodes.first {
+                                    //駅コードから路線検索
+                                    let url = "http://www.ekidata.jp/api/g/\(code).xml"
+                                    //print(url)
+                                    //Alamofire XML形式　SWXMHash
+                                    
+                                    Alamofire.request(url).response{ response in
+                                        let xml = SWXMLHash.parse(response.data!)
+                                        
+                                        for stationInfo in xml["ekidata"]["station_g"].all {
+                                            //print(stationInfo)
+                                            let line = Line(stationCode: stationInfo["station_cd"].element!.text, stationName: stationInfo["station_name"].element!.text, lineCode: stationInfo["line_cd"].element!.text, lineName: stationInfo["line_name"].element!.text)
+                                            self.lineInputList.append(line)
+                                            print(self.lineInputList)
+                                        }
+                                        // ピッカーを更新
+                                        self.reloadInputViews()
+                                    }
+                                } else {
+                                    print("駅コードから路線が見つかりません")
+                                }
+
                             }
                         }
                     }
-                    
-                    /*
-                        //駅の場所が等しい
-                        if let city.contains(cityList[i]) {
-                            if name.contains(String(stationInputList[i].characters.dropLast())){
-                                // 駅コード抽出、配列に追加
-                                let stationCode = splitStationRow[1]
-                                stationCodes.append(stationCode)
-                                print(stationCode)
-                            }
-                        } else {
-                            //現在地
-                            if let stationOption = Place.shared.station {
-                                if name.contains(String(stationOption.characters.dropLast())) == true {
-                                    // 駅コード抽出、配列に追加
-                                    let stationCode = splitStationRow[1]
-                                    stationCodes.append(stationCode)
-                                }
-                            }
-                        
-                    }*/
-                    
-                    
-                
-            }
             
-            
-            if let code = stationCodes.first {
-                //駅コードから路線検索
-                let url = "http://www.ekidata.jp/api/g/\(code).xml"
-                //print(url)
-                //Alamofire XML形式　SWXMHash
-                Alamofire.request(url).response{ response in
-                    let xml = SWXMLHash.parse(response.data!)
-                    
-                    for stationInfo in xml["ekidata"]["station_g"].all {
-                        //print(stationInfo)
-                        let line = Line(stationCode: stationInfo["station_cd"].element!.text, stationName: stationInfo["station_name"].element!.text, lineCode: stationInfo["line_cd"].element!.text, lineName: stationInfo["line_name"].element!.text)
-                        //self.lineInputList.append(line)
-                        print(line)
-                    }
-                    // ピッカーを更新
-                    self.reloadInputViews()
-                }
-            } else {
-                print("駅コードから路線が見つかりません")
-            }
         }
                 
     }
-    
+                
+
+
+
     //CSVファイルの読み込み
     func loadCSV(filename: String) -> [String] {
         var csvArray = [String]()
@@ -365,8 +446,8 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             print("読み込みエラー \(filename).csv")
         }
         return csvArray
-    }
-    */
+    }*/
+    
     
     
     
