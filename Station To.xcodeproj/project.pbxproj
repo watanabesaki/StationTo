@@ -35,6 +35,8 @@
 		D4EDD4A11F590A58001B6B0C /* icons_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EDD4A01F590A58001B6B0C /* icons_map@2x.png */; };
 		D4EDD4A41F590A86001B6B0C /* icons8_検索@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EDD4A31F590A86001B6B0C /* icons8_検索@2x.png */; };
 		D4EDD4A61F590A94001B6B0C /* icons_mypage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EDD4A51F590A94001B6B0C /* icons_mypage@2x.png */; };
+		D4EE62CA1F8BAF4C00AE06D4 /* ruleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE62C91F8BAF4C00AE06D4 /* ruleViewController.swift */; };
+		D4EE62CC1F8BB10100AE06D4 /* privacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE62CB1F8BB10100AE06D4 /* privacyViewController.swift */; };
 		D4F061491F57E060008DD89B /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F061481F57E060008DD89B /* MypageViewController.swift */; };
 		D4F0614D1F57E0A3008DD89B /* CheckinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */; };
 		D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */; };
@@ -82,6 +84,8 @@
 		D4EDD4A01F590A58001B6B0C /* icons_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons_map@2x.png"; sourceTree = "<group>"; };
 		D4EDD4A31F590A86001B6B0C /* icons8_検索@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8_検索@2x.png"; sourceTree = "<group>"; };
 		D4EDD4A51F590A94001B6B0C /* icons_mypage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons_mypage@2x.png"; sourceTree = "<group>"; };
+		D4EE62C91F8BAF4C00AE06D4 /* ruleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ruleViewController.swift; sourceTree = "<group>"; };
+		D4EE62CB1F8BB10100AE06D4 /* privacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = privacyViewController.swift; sourceTree = "<group>"; };
 		D4F061481F57E060008DD89B /* MypageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		D4F0614C1F57E0A3008DD89B /* CheckinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinViewController.swift; sourceTree = "<group>"; };
 		D4F102CD1F52BE26008FC4AC /* TrainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 			children = (
 				D40108F81F80D3BB009FF803 /* SignInViewController.swift */,
 				D40108FD1F80D6EB009FF803 /* SignUpViewController.swift */,
+				D4EE62C91F8BAF4C00AE06D4 /* ruleViewController.swift */,
+				D4EE62CB1F8BB10100AE06D4 /* privacyViewController.swift */,
 			);
 			name = login;
 			sourceTree = "<group>";
@@ -420,8 +426,10 @@
 				D40108FE1F80D6EB009FF803 /* SignUpViewController.swift in Sources */,
 				D42C9DB71F591E17006DF703 /* MainTabBarController.swift in Sources */,
 				D47B53A51F769D7C00F40A6C /* APIKey.swift in Sources */,
+				D4EE62CC1F8BB10100AE06D4 /* privacyViewController.swift in Sources */,
 				D4EBE43E1F77ADA200EDD7B3 /* StationViewController.swift in Sources */,
 				D42C9DC01F593434006DF703 /* TrainTableViewCell.swift in Sources */,
+				D4EE62CA1F8BAF4C00AE06D4 /* ruleViewController.swift in Sources */,
 				D4F1AA791F791AC400D52BAE /* MypageTableViewCell.swift in Sources */,
 				D4EBE4471F77F59700EDD7B3 /* station.swift in Sources */,
 				D4F102CE1F52BE26008FC4AC /* TrainViewController.swift in Sources */,
