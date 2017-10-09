@@ -17,8 +17,10 @@ target 'Station To' do
 
   #pod 'GUAAlertView.h', :git => 'https://github.com/onlymelon/GUAAlertView.git'
 
-  pod 'TweetbotAlertView’, :git => 'https://github.com/MaxHasADHD/TweetbotAlertView.git'
+  #pod 'TweetbotAlertView’, :git => 'https://github.com/MaxHasADHD/TweetbotAlertView.git'
 
   pod 'SVProgressHUD'
+
+  pod 'SCLAlertView'
   
 end

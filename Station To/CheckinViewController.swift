@@ -18,6 +18,8 @@ import Alamofire
 import SwiftyJSON
 import SWXMLHash
 
+import SCLAlertView
+
 
 
 class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -360,6 +362,8 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                     print("最寄り駅完了")
                     self.reloadInputViews()
                     SVProgressHUD.showSuccess(withStatus: "現在地取得完了")
+                    SVProgressHUD.dismiss(withDelay: 1.0)
+
                     //self.lineoption()
                 }
             }
@@ -515,18 +519,29 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                         //self.addressLabel.text = ""
                     } else {
                         //保存に成功
-                        SVProgressHUD.showSuccess(withStatus: "チェックイン完了")
+                        //SVProgressHUD.showSuccess(withStatus: "チェックイン完了")
+                        
+                        SCLAlertView().showTitle(
+                            "チェックイン完了", // タイトル
+                            subTitle: "訪問数が増えました！", // サブタイトル
+                            duration: 3.0, // 2.0秒ごに、自動的に閉じる（OKでも閉じることはできる）
+                            completeText: "OK", // クローズボタンのタイトル
+                            style: .success, // スタイル（Success)指定
+                            colorStyle: 0x000088, // ボタン、シンボルの色
+                            colorTextButton: 0xFFFF00 // ボタンの文字列の色
+                        )                        
+                        
                         //self.nameLabel.text = place.name
                         //self.addressLabel.text = place.formattedAddress?.components(separatedBy: ", ")
                             //.joined(separator: "\n")
                         
-                        Place.shared.name = nil
+                        //Place.shared.name = nil
                         Place.shared.station = nil
                         Place.shared.line = nil
                         Place.shared.exit = nil
                         Place.shared.time = nil
                         Place.shared.trainNumber = nil
-                        Place.shared.location = nil
+                        //Place.shared.location = nil
                         
                         self.stationInput.text = ""
                         self.lineInput.text = ""
@@ -540,9 +555,9 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                         //print(Place.shared.location) nilになっている
                         
                         //指定した秒数後に処理を実行
-                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(5)) {
+                        /*DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(5)) {
                             SVProgressHUD.dismiss()
-                        }
+                        }*/
                         
                     }
                 })
