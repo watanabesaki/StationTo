@@ -14,6 +14,8 @@ target 'Station To' do
   pod 'SwiftyJSON'
   pod 'SWXMLHash'
   pod 'NCMB', :git => 'https://github.com/NIFTYCloud-mbaas/ncmb_ios.git'
+  pod 'GUAAlertView.h', :git => 'https://github.com/onlymelon/GUAAlertView.git'
 
   pod 'SVProgressHUD'
+  
 end

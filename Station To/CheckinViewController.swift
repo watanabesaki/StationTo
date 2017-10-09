@@ -19,6 +19,7 @@ import SwiftyJSON
 import SWXMLHash
 
 
+
 class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     
@@ -159,6 +160,11 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        SVProgressHUD.show(withStatus: "現在地取得中")
+        SVProgressHUD.setDefaultAnimationType(.native)
+        SVProgressHUD.setDefaultMaskType(.black)
+        
+        
         placesClient = GMSPlacesClient.shared()
         
         //現在地取得
@@ -292,6 +298,7 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     //現在のプレイスを取得する 端末の現在地にあるローカル ビジネスなどのプレイスを検出するには、GMSPlacesClient currentPlaceWithCallback: を呼び出す
      func getCurrentPlace(){
         
+        
         placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
             if let error = error {
                 print("Pick Place error: \(error.localizedDescription)")
@@ -352,6 +359,7 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                     // ピッカーを更新
                     print("最寄り駅完了")
                     self.reloadInputViews()
+                    SVProgressHUD.showSuccess(withStatus: "現在地取得完了")
                     //self.lineoption()
                 }
             }
