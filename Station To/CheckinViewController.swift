@@ -527,8 +527,8 @@ class CheckinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                             duration: 3.0, // 2.0秒ごに、自動的に閉じる（OKでも閉じることはできる）
                             completeText: "OK", // クローズボタンのタイトル
                             style: .success, // スタイル（Success)指定
-                            colorStyle: 0x000088, // ボタン、シンボルの色
-                            colorTextButton: 0xFFFF00 // ボタンの文字列の色
+                            colorStyle: 0xFFA500, // ボタン、シンボルの色
+                            colorTextButton: 0xFFFFFF // ボタンの文字列の色
                         )                        
                         
                         //self.nameLabel.text = place.name
