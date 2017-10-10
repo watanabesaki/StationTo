@@ -195,7 +195,7 @@
                                 <rect key="frame" x="29" y="1" width="317" height="602"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">この利用規約（以下，「本規約」といいます。）は，教えてルート（以下，「当社」といいます。）がこのウェブサイト上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。
+                                <string key="text">この利用規約（以下，「本規約」といいます。）は，教えてルート（以下，「当社」といいます。）がこのウェブサイト上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。
 
 第1条（適用）
 
@@ -268,7 +268,7 @@
 
 本規約の解釈にあたっては，日本法を準拠法とします。
 本サービスに関して紛争が生じた場合には，当社の本店所在地を管轄する裁判所を専属的合意管轄とします。
-以上</mutableString>
+以上</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -364,10 +364,9 @@
 
 本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。
 
-住所：
-社名：
-担当部署：
-Eメールアドレス：
+住所：東京都港区南青山2-2-15-1403
+社名：株式会社Ylab
+連絡先：03-6427-5572
 
 以上</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -393,7 +392,7 @@ Eメールアドレス：
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lDU-U0-fDp" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6li-9T-otn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6li-9T-otn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -411,7 +410,7 @@ Eメールアドレス：
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F7r-In-oqB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="grx-Ft-Zog">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="grx-Ft-Zog">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -429,7 +428,7 @@ Eメールアドレス：
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4h0-oX-hkT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3Qs-45-aKB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Qs-45-aKB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
