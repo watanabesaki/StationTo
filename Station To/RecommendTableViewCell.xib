@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,29 +19,43 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="東口" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djm-30-PrA">
-                        <rect key="frame" x="36" y="14" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="東口" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djm-30-PrA">
+                        <rect key="frame" x="18" y="14" width="83" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="9hC-4O-77g"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="３号車" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMS-4T-U3A">
-                        <rect key="frame" x="158" y="14" width="58" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="３号車" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMS-4T-U3A">
+                        <rect key="frame" x="161" y="14" width="52" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="徒歩6分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdg-38-CVy">
-                        <rect key="frame" x="243" y="14" width="124" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="徒歩6分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdg-38-CVy">
+                        <rect key="frame" x="302.5" y="14" width="62.5" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="bl9-Ed-iTv"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="mMS-4T-U3A" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4xY-Ep-n6f"/>
+                    <constraint firstItem="cdg-38-CVy" firstAttribute="baseline" secondItem="djm-30-PrA" secondAttribute="baseline" id="R71-B4-O4y"/>
+                    <constraint firstItem="mMS-4T-U3A" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="S8s-hs-hy4"/>
+                    <constraint firstItem="mMS-4T-U3A" firstAttribute="leading" secondItem="djm-30-PrA" secondAttribute="trailing" constant="60" id="WTf-Cn-jWo"/>
+                    <constraint firstItem="djm-30-PrA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="alm-YB-IbX"/>
+                    <constraint firstAttribute="trailing" secondItem="cdg-38-CVy" secondAttribute="trailing" constant="10" id="dcm-30-NwI"/>
+                    <constraint firstItem="mMS-4T-U3A" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qjB-Fr-hDd"/>
+                    <constraint firstItem="cdg-38-CVy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wnU-QI-UTi"/>
+                    <constraint firstItem="djm-30-PrA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="xtF-Zf-wVh"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="recommendExitLabel" destination="djm-30-PrA" id="GCA-Ms-uIl"/>

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,28 +19,40 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="場所名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mM-rb-FqA">
-                        <rect key="frame" x="8" y="12" width="238" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="日時" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-Kd-xGE">
+                        <rect key="frame" x="268" y="11" width="99" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Z8Z-cN-F00"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="日時" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-Kd-xGE">
-                        <rect key="frame" x="240" y="11" width="127" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="場所名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mM-rb-FqA">
+                        <rect key="frame" x="8" y="12" width="241" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="jqw-Tt-iMY"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="Fqf-Kd-xGE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="B7q-tv-GZf"/>
+                    <constraint firstItem="5mM-rb-FqA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="PJN-1b-g9m"/>
+                    <constraint firstItem="Fqf-Kd-xGE" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Rw9-mW-jMy"/>
+                    <constraint firstItem="Fqf-Kd-xGE" firstAttribute="leading" secondItem="5mM-rb-FqA" secondAttribute="trailing" constant="5" id="TGX-DP-vgV"/>
+                    <constraint firstItem="5mM-rb-FqA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cHp-Bw-lv0"/>
+                    <constraint firstItem="Fqf-Kd-xGE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="m0A-9j-AEo"/>
+                </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="historyplaceLabel" destination="5mM-rb-FqA" id="Rb3-kI-Kl8"/>
                 <outlet property="historytimeLabel" destination="Fqf-Kd-xGE" id="iGT-wt-eh3"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="163"/>
+            <point key="canvasLocation" x="33.5" y="162.5"/>
         </tableViewCell>
     </objects>
 </document>

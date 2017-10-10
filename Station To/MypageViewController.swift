@@ -168,6 +168,12 @@ class MypageViewController: UIViewController,UITableViewDataSource,UITableViewDe
         cell.historyplaceLabel.text = self.namemember[indexPath.row]
         cell.historytimeLabel.text = self.datemember[indexPath.row]
         
+        //文字数に応じてサイズ調節
+        cell.historyplaceLabel.adjustsFontSizeToFitWidth = true
+        //文字数に応じてサイズ調節
+        cell.historytimeLabel.adjustsFontSizeToFitWidth = true
+
+        
         //cellを返す
         return cell
     }
