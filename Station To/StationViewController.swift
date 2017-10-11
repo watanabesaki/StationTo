@@ -66,7 +66,7 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
                 let trainViewController = segue.destination as! TrainViewController
                 trainViewController.selectedStation = stations[indexPath.row].name
                 trainViewController.selectedplaceName = selectedplace
-                trainViewController.stationcityName = stationcity
+                trainViewController.stationcityName = stations[indexPath.row].city
             }
         }
     }
@@ -112,9 +112,11 @@ class StationViewController: UIViewController,UITableViewDataSource,UITableViewD
                     for stationInfo in json.arrayValue {
                         var station = Station(name: stationInfo["name"].string!)
                         station.traveltime = stationInfo["distanceKm"].string!
+                        station.city =  stationInfo["city"].string!
+
                         self.stations.append(station)
                         
-                        self.stationcity = stationInfo["city"].string!
+                        //self.stationcity = stationInfo["city"].string!
                         print(self.stationcity)
 
 

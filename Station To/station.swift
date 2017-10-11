@@ -15,6 +15,7 @@ struct Station {
     var name: String
     var traveltime: String?
     var location: CLLocationCoordinate2D?
+    var city : String?
     
     init(name: String) {
         self.name = name
